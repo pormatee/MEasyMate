@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรปราจีน V2 - โปรโมชั่นอัปเดตอัตโนมัติ</title>
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Scrollbar ซ่อน */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Skeleton Loading */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="min-h-screen bg-[#FCFCF9] pb-20">
+        
+        <!-- Header -->
+        <div class="sticky top-0 z-30 bg-white/95 backdrop-blur-xl border-b border-zinc-100">
+            <div class="max-w-[1320px] mx-auto px-4 py-3">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-lg font-black flex items-center gap-2">
+                            🛒 โปรปราจีน V2
+                            <span class="text-[10px] bg-emerald-500 text-white px-2 py-0.5 rounded-full">LIVE</span>
+                        </h1>
+                        <p class="text-xs text-zinc-500 flex items-center gap-2">
+                            <span id="lastUpdate">กำลังโหลด...</span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" id="statusDot"></span>
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="refreshData()" class="h-9 w-9 rounded-full bg-zinc-100 border border-zinc-200 grid place-items-center hover:bg-zinc-200 transition">
+                            🔄
+                        </button>
+                        <button onclick="toggleAdmin()" class="h-9 px-3 rounded-full bg-black text-white text-xs font-bold">
+                            หลังบ้าน
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Search + Filter -->
+        <div class="sticky top-[73px] z-20 bg-white/95 backdrop-blur-xl border-b border-zinc-100">
+            <div class="max-w-[1320px] mx-auto px-4 py-3">
+                <!-- Search -->
+                <div class="relative">
+                    <input 
+                        id="searchInput"
+                        type="text" 
+                        placeholder="🔍 ค้นหาสินค้า หรือ สาขา..." 
+                        class="w-full h-11 rounded-full bg-zinc-50 border border-zinc-200 px-4 pr-12 text-sm outline-none focus:bg-white focus:border-zinc-900 transition-all"
+                        oninput="handleSearch(this.value)"
+                    >
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 text-xs" id="resultCount">0 รายการ</span>
+                </div>
+                
+                <!-- Filter Buttons -->
+                <div class="flex gap-1.5 mt-2 overflow-x-auto scrollbar-hide">
+                    <button onclick="filterStore('ทั้งหมด')" class="filter-btn active shrink-0 h-8 px-4 rounded-full text-xs font-semibold bg-black text-white border border-black transition">
+                        ทั้งหมด
+                    </button>
+                    <button onclick="filterStore('Lotus\'s')" class="filter-btn shrink-0 h-8 px-4 rounded-full text-xs font-semibold bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-50 transition">
+                        🟢 Lotus's
+                    </button>
+                    <button onclick="filterStore('Big C')" class="filter-btn shrink-0 h-8 px-4 rounded-full text-xs font-semibold bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-50 transition">
+                        🔴 Big C
+                    </button>
+                    <button onclick="filterStore('CJ More')" class="filter-btn shrink-0 h-8 px-4 rounded-full text-xs font-semibold bg-white text-zinc-600 border border-zinc-200 hover:bg-zinc-50 transition">
+                        🟡 CJ More
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="max-w-[1320px] mx-auto px-4 py-4">
+            
+            <!-- Stats -->
+            <div class="flex items-center gap-4 mb-4 text-xs text-zinc-500">
+                <span id="totalCount">📦 0 รายการ</span>
+                <span id="storeCount">🏪 0 ห้าง</span>
+                <span id="discountCount">💰 ส่วนลดเฉลี่ย 0%</span>
+            </div>
+            
+            <!-- Promotions Grid -->
+            <div id="promotionList" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+                <!-- Skeleton Loading -->
+                <div class="skeleton rounded-xl h-64"></div>
+                <div class="skeleton rounded-xl h-64"></div>
+                <div class="skeleton rounded-xl h-64"></div>
+                <div class="skeleton rounded-xl h-64"></div>
+            </div>
+            
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-16">
+                <div class="text-5xl mb-4">🔍</div>
+                <p class="font-bold text-zinc-700">ไม่พบโปรโมชั่น</p>
+                <p class="text-sm text-zinc-400 mt-1">ลองเปลี่ยนคำค้นหรือเลือกห้างอื่น</p>
+            </div>
+            
+            <!-- Load More -->
+            <div id="loadMore" class="text-center mt-6 hidden">
+                <button onclick="loadMore()" class="h-10 px-6 rounded-full bg-black text-white text-sm font-bold hover:bg-zinc-800 transition">
+                    โหลดเพิ่มเติม ↓
+                </button>
+            </div>
+        </div>
+        
+        <!-- Admin Panel (ซ่อนไว้) -->
+        <div id="adminPanel" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden" onclick="if(event.target===this) toggleAdmin()">
+            <div class="absolute bottom-0 left-0 right-0 bg-white rounded-t-3xl max-h-[80vh] overflow-y-auto p-6 animate-fade-in">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-black">⚙️ หลังบ้าน</h2>
+                    <button onclick="toggleAdmin()" class="h-8 w-8 rounded-full bg-zinc-100 grid place-items-center">✕</button>
+                </div>
+                
+                <!-- Admin Stats -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                    <div class="bg-zinc-50 rounded-xl p-3 text-center">
+                        <div class="text-2xl font-black" id="adminTotal">0</div>
+                        <div class="text-xs text-zinc-500">ทั้งหมด</div>
+                    </div>
+                    <div class="bg-zinc-50 rounded-xl p-3 text-center">
+                        <div class="text-2xl font-black" id="adminToday">0</div>
+                        <div class="text-xs text-zinc-500">วันนี้</div>
+                    </div>
+                    <div class="bg-zinc-50 rounded-xl p-3 text-center">
+                        <div class="text-2xl font-black" id="adminAvg">0%</div>
+                        <div class="text-xs text-zinc-500">ส่วนลดเฉลี่ย</div>
+                    </div>
+                </div>
+                
+                <!-- Add Promotion -->
+                <div class="bg-zinc-50 rounded-xl p-4 mb-4">
+                    <h3 class="font-bold text-sm mb-2">➕ เพิ่มโปรโมชั่นใหม่</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <input id="newProduct" placeholder="ชื่อสินค้า" class="col-span-2 h-9 rounded-lg border border-zinc-200 px-3 text-sm">
+                        <select id="newStore" class="h-9 rounded-lg border border-zinc-200 px-3 text-sm">
+                            <option>Lotus's</option>
+                            <option>Big C</option>
+                            <option>CJ More</option>
+                        </select>
+                        <input id="newPrice" type="number" placeholder="ราคาใหม่" class="h-9 rounded-lg border border-zinc-200 px-3 text-sm">
+                        <input id="newOldPrice" type="number" placeholder="ราคาเก่า" class="h-9 rounded-lg border border-zinc-200 px-3 text-sm">
+                        <input id="newExpiry" placeholder="หมดอายุ (เช่น 15 พ.ค. 68)" class="h-9 rounded-lg border border-zinc-200 px-3 text-sm">
+                    </div>
+                    <button onclick="addPromotion()" class="mt-2 w-full h-10 rounded-lg bg-black text-white text-sm font-bold hover:bg-zinc-800 transition">
+                        บันทึกโปรโมชั่น
+                    </button>
+                </div>
+                
+                <!-- Promotion List (Admin) -->
+                <div id="adminList" class="space-y-2">
+                    <!-- จะแสดงรายการสินค้าให้ Admin จัดการ -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Toast Notification -->
+        <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 bg-zinc-900 text-white px-4 py-2.5 rounded-full text-sm shadow-xl hidden">
+            <span id="toastMessage"></span>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURATION
+        // ============================================
+        const CONFIG = {
+            // ใช้ Supabase เป็นฐานข้อมูล (ฟรี)
+            supabaseUrl: 'YOUR_SUPABASE_URL', // ไปสมัครที่ supabase.com
+            supabaseKey: 'YOUR_SUPABASE_ANON_KEY',
+            
+            // หรือใช้ API ของเรา (ถ้ายังไม่มี Supabase)
+            apiUrl: 'https://proprachin-api.vercel.app/api/promotions',
+            
+            // LINE Notify Token (ไปสมัครที่ notify-bot.line.me)
+            lineToken: 'YOUR_LINE_TOKEN',
+            
+            // Auto-refresh ทุก 5 นาที
+            refreshInterval: 5 * 60 * 1000,
+        }
+
+        // ============================================
+        // STATE
+        // ============================================
+        let allPromotions = []
+        let filteredPromotions = []
+        let currentStore = 'ทั้งหมด'
+        let currentSearch = ''
+        let currentPage = 0
+        const PAGE_SIZE = 20
+        let isAdminOpen = false
+
+        // ============================================
+        // MAIN FUNCTIONS
+        // ============================================
+        
+        // โหลดข้อมูล
+        async function loadPromotions() {
+            try {
+                updateStatus('loading', 'กำลังโหลดข้อมูล...')
+                
+                // ลองโหลดจาก Supabase ก่อน
+                let data = await loadFromSupabase()
+                
+                // ถ้าไม่มี ให้โหลดจาก API สำรอง
+                if (!data || data.length === 0) {
+                    data = await loadFromAPI()
+                }
+                
+                // ถ้ายังไม่มี ให้ใช้ข้อมูลตัวอย่าง
+                if (!data || data.length === 0) {
+                    data = getSampleData()
+                    showToast('⚠️ ใช้ข้อมูลตัวอย่าง (ยังไม่เชื่อมต่อฐานข้อมูล)')
+                }
+                
+                allPromotions = data
+                filteredPromotions = data
+                
+                renderStats()
+                renderPromotions()
+                renderAdmin()
+                
+                updateStatus('online', `อัปเดตล่าสุด ${new Date().toLocaleTimeString('th-TH')}`)
+                
+                // บันทึก Local Cache
+                localStorage.setItem('promotions_cache', JSON.stringify(data))
+                localStorage.setItem('promotions_cache_time', Date.now())
+                
+            } catch (error) {
+                console.error('Load error:', error)
+                showToast('❌ โหลดข้อมูลล้มเหลว ใช้ข้อมูลสำรอง')
+                
+                // ใช้ข้อมูลจาก Cache
+                const cached = localStorage.getItem('promotions_cache')
+                if (cached) {
+                    allPromotions = JSON.parse(cached)
+                    filteredPromotions = allPromotions
+                    renderPromotions()
+                    updateStatus('offline', '📶 โหมดออฟไลน์ (ข้อมูลเก่า)')
+                } else {
+                    allPromotions = getSampleData()
+                    filteredPromotions = allPromotions
+                    renderPromotions()
+                }
+            }
+        }
+
+        // โหลดจาก Supabase
+        async function loadFromSupabase() {
+            if (CONFIG.supabaseUrl === 'YOUR_SUPABASE_URL') return null
+            
+            const response = await fetch(`${CONFIG.supabaseUrl}/rest/v1/promotions?select=*&order=id.desc`, {
+                headers: {
+                    'apikey': CONFIG.supabaseKey,
+                    'Authorization': `Bearer ${CONFIG.supabaseKey}`
+                }
+            })
+            
+            if (!response.ok) throw new Error('Supabase error')
+            return await response.json()
+        }
+
+        // โหลดจาก API
+        async function loadFromAPI() {
+            const response = await fetch(CONFIG.apiUrl)
+            if (!response.ok) throw new Error('API error')
+            const data = await response.json()
+            return data.data || data
+        }
+
+        // ============================================
+        // RENDER FUNCTIONS
+        // ============================================
+        
+        function renderPromotions() {
+            const list = document.getElementById('promotionList')
+            const empty = document.getElementById('emptyState')
+            const loadMore = document.getElementById('loadMore')
+            
+            // คำนวณ pagination
+            const start = 0
+            const end = (currentPage + 1) * PAGE_SIZE
+            const displayData = filteredPromotions.slice(start, end)
+            
+            if (displayData.length === 0) {
+                list.innerHTML = ''
+                empty.classList.remove('hidden')
+                loadMore.classList.add('hidden')
+                return
+            }
+            
+            empty.classList.add('hidden')
+            
+            // แสดงการ์ด
+            list.innerHTML = displayData.map(p => `
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-zinc-200 hover:shadow-md transition-all animate-fade-in group">
+                    <div class="relative aspect-square overflow-hidden bg-zinc-100">
+                        <img 
+                            src="${p.image || 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&h=300&fit=crop'}" 
+                            alt="${p.product}"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                            onerror="this.src='https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&h=300&fit=crop'"
+                        >
+                        
+                        <!-- Store Badge -->
+                        <div class="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-black flex items-center gap-1 ${getStoreStyle(p.store).bg} ${getStoreStyle(p.store).text}">
+                            <span class="w-1.5 h-1.5 rounded-full ${p.store === 'CJ More' ? 'bg-black' : 'bg-white'}"></span>
+                            ${p.store}
+                        </div>
+                        
+                        <!-- Discount Badge -->
+                        <div class="absolute top-2 right-2 bg-black/80 backdrop-blur text-white text-[10px] font-black px-2 py-0.5 rounded-full">
+                            ${p.discount || `-${Math.round(((p.old_price - p.new_price) / p.old_price) * 100)}%`}
+                        </div>
+                        
+                        <!-- Verified -->
+                        ${p.is_verified ? `
+                            <div class="absolute bottom-2 left-2 bg-white/95 backdrop-blur px-2 py-0.5 rounded-full border border-zinc-200 text-[9px] font-semibold flex items-center gap-1">
+                                ✅ ตรวจสอบแล้ว
+                            </div>
+                        ` : ''}
+                        
+                        <!-- Distance -->
+                        ${p.distance ? `
+                            <div class="absolute bottom-2 right-2 bg-white/95 backdrop-blur px-2 py-0.5 rounded-full border border-zinc-200 text-[9px] font-medium flex items-center gap-1">
+                                📍 ${p.distance}
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="p-3">
+                        <h3 class="text-sm font-bold leading-tight line-clamp-2 min-h-[40px]">
+                            ${p.product}
+                        </h3>
+                        
+                        <div class="flex items-end gap-2 mt-1">
+                            <span class="text-lg font-black">฿${p.new_price || p.newPrice}</span>
+                            <span class="text-xs text-zinc-400 line-through mb-0.5">฿${p.old_price || p.oldPrice}</span>
+                            <span class="ml-auto text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded-full">
+                                ${Math.round((((p.old_price || p.oldPrice) - (p.new_price || p.newPrice)) / (p.old_price || p.oldPrice)) * 100)}%
+                            </span>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-1 mt-1">
+                            ${(p.branches || p.branch || 'สาขา 304').split(',').slice(0, 2).map(b => `
+                                <span class="text-[9px] bg-zinc-50 border border-zinc-200 rounded-full px-2 py-0.5">
+                                    ${b.trim()}
+                                </span>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="flex items-center justify-between mt-2 pt-1 border-t border-zinc-100 text-[9px] text-zinc-500">
+                            <span>📅 ${p.expiry || 'หมดเร็วๆ นี้'}</span>
+                            <button onclick="sharePromotion('${p.id}')" class="text-zinc-700 hover:text-black transition flex items-center gap-1">
+                                📤 แชร์
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('')
+            
+            // แสดงปุ่ม Load More
+            if (filteredPromotions.length > displayData.length) {
+                loadMore.classList.remove('hidden')
+            } else {
+                loadMore.classList.add('hidden')
+            }
+            
+            // อัปเดตจำนวน
+            document.getElementById('resultCount').textContent = `${filteredPromotions.length} รายการ`
+        }
+
+        function renderStats() {
+            const total = filteredPromotions.length
+            const stores = [...new Set(filteredPromotions.map(p => p.store))].length
+            const avgDiscount = filteredPromotions.reduce((sum, p) => {
+                const old = p.old_price || p.oldPrice || 0
+                const newp = p.new_price || p.newPrice || 0
+                return sum + (old > 0 ? Math.round(((old - newp) / old) * 100) : 0)
+            }, 0) / (filteredPromotions.length || 1)
+            
+            document.getElementById('totalCount').textContent = `📦 ${total} รายการ`
+            document.getElementById('storeCount').textContent = `🏪 ${stores} ห้าง`
+            document.getElementById('discountCount').textContent = `💰 ส่วนลดเฉลี่ย ${Math.round(avgDiscount)}%`
+        }
+
+        function renderAdmin() {
+            const list = document.getElementById('adminList')
+            if (!list) return
+            
+            const total = allPromotions.length
+            const today = allPromotions.filter(p => {
+                const date = new Date(p.created_at || p.createdAt)
+                return date.toDateString() === new Date().toDateString()
+            }).length
+            const avg = allPromotions.reduce((sum, p) => {
+                const old = p.old_price || p.oldPrice || 0
+                const newp = p.new_price || p.newPrice || 0
+                return sum + (old > 0 ? Math.round(((old - newp) / old) * 100) : 0)
+            }, 0) / (allPromotions.length || 1)
+            
+            document.getElementById('adminTotal').textContent = total
+            document.getElementById('adminToday').textContent = today
+            document.getElementById('adminAvg').textContent = Math.round(avg) + '%'
+            
+            list.innerHTML = allPromotions.slice(0, 20).map(p => `
+                <div class="flex items-center justify-between bg-zinc-50 rounded-lg p-2 text-sm">
+                    <div class="flex-1 min-w-0">
+                        <div class="font-medium truncate">${p.product}</div>
+                        <div class="text-xs text-zinc-500">${p.store} · ฿${p.new_price || p.newPrice}</div>
+                    </div>
+                    <div class="flex gap-1">
+                        <button onclick="deletePromotion('${p.id}')" class="h-7 px-2 rounded bg-red-50 text-red-600 text-xs hover:bg-red-100 transition">
+                            ลบ
+                        </button>
+                    </div>
+                </div>
+            `).join('')
+        }
+
+        // ============================================
+        // FILTER & SEARCH
+        // ============================================
+        
+        function filterStore(store) {
+            currentStore = store
+            currentPage = 0
+            
+            // อัปเดตปุ่ม
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = btn.className.replace('bg-black text-white', 'bg-white text-zinc-600')
+                btn.className = btn.className.replace('border-black', 'border-zinc-200')
+            })
+            event.target.className += ' bg-black text-white border-black'
+            
+            applyFilters()
+        }
+
+        function handleSearch(value) {
+            currentSearch = value.toLowerCase()
+            currentPage = 0
+            applyFilters()
+        }
+
+        function applyFilters() {
+            filteredPromotions = allPromotions.filter(p => {
+                const matchStore = currentStore === 'ทั้งหมด' || p.store === currentStore
+                const matchSearch = !currentSearch || 
+                    p.product.toLowerCase().includes(currentSearch) ||
+                    (p.category && p.category.toLowerCase().includes(currentSearch)) ||
+                    (p.branches && p.branches.some(b => b.toLowerCase().includes(currentSearch))) ||
+                    (p.branch && p.branch.toLowerCase().includes(currentSearch))
+                return matchStore && matchSearch
+            })
+            
+            renderStats()
+            renderPromotions()
+        }
+
+        // ============================================
+        // CRUD OPERATIONS
+        // ============================================
+        
+        async function addPromotion() {
+            const product = document.getElementById('newProduct').value.trim()
+            const store = document.getElementById('newStore').value
+            const price = parseInt(document.getElementById('newPrice').value)
+            const oldPrice = parseInt(document.getElementById('newOldPrice').value)
+            const expiry = document.getElementById('newExpiry').value.trim()
+            
+            if (!product || !price) {
+                showToast('⚠️ กรุณากรอกชื่อสินค้าและราคา')
+                return
+            }
+            
+            const newPromo = {
+                product,
+                store,
+                new_price: price,
+                old_price: oldPrice || price + 20,
+                discount: `ลด ${Math.round(((oldPrice || price + 20) - price) / (oldPrice || price + 20) * 100)}%`,
+                expiry: expiry || 'หมดเร็วๆ นี้',
+                branch: 'สาขา 304',
+                image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&h=300&fit=crop',
+                is_verified: false,
+                created_at: new Date().toISOString()
+            }
+            
+            try {
+                // บันทึกใน Supabase
+                if (CONFIG.supabaseUrl !== 'YOUR_SUPABASE_URL') {
+                    const response = await fetch(`${CONFIG.supabaseUrl}/rest/v1/promotions`, {
+                        method: 'POST',
+                        headers: {
+                            'apikey': CONFIG.supabaseKey,
+                            'Authorization': `Bearer ${CONFIG.supabaseKey}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(newPromo)
+                    })
+                    if (!response.ok) throw new Error('Save error')
+                }
+                
+                // เพิ่มใน Local
+                allPromotions.unshift({ ...newPromo, id: Date.now() })
+                applyFilters()
+                renderAdmin()
+                
+                // เคลียร์ฟอร์ม
+                document.getElementById('newProduct').value = ''
+                document.getElementById('newPrice').value = ''
+                document.getElementById('newOldPrice').value = ''
+                document.getElementById('newExpiry').value = ''
+                
+                showToast('✅ เพิ่มโปรโมชั่นสำเร็จ!')
+                
+                // แจ้งเตือน LINE
+                sendLineNotify(`🔥 โปรใหม่!\n📦 ${product}\n💰 ${price} บาท\n🏪 ${store}`)
+                
+            } catch (error) {
+                console.error('Add error:', error)
+                showToast('❌ บันทึกไม่สำเร็จ')
+            }
+        }
+
+        async function deletePromotion(id) {
+            if (!confirm('ลบโปรโมชั่นนี้?')) return
+            
+            try {
+                // ลบใน Supabase
+                if (CONFIG.supabaseUrl !== 'YOUR_SUPABASE_URL') {
+                    const response = await fetch(`${CONFIG.supabaseUrl}/rest/v1/promotions?id=eq.${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'apikey': CONFIG.supabaseKey,
+                            'Authorization': `Bearer ${CONFIG.supabaseKey}`
+                        }
+                    })
+                }
+                
+                allPromotions = allPromotions.filter(p => p.id !== id)
+                applyFilters()
+                renderAdmin()
+                showToast('🗑️ ลบเรียบร้อย')
+                
+            } catch (error) {
+                console.error('Delete error:', error)
+                showToast('❌ ลบไม่สำเร็จ')
+            }
+        }
+
+        // ============================================
+        // SHARE & NOTIFICATION
+        // ============================================
+        
+        function sharePromotion(id) {
+            const p = allPromotions.find(item => item.id == id)
+            if (!p) return
+            
+            const text = `🛒 ${p.product}\n💰 ${p.new_price || p.newPrice} บาท (จาก ${p.old_price || p.oldPrice} บาท)\n🏪 ${p.store}\n📅 ${p.expiry}`
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: p.product,
+                    text: text,
+                    url: window.location.href
+                })
+            } else {
+                navigator.clipboard.writeText(text + '\n' + window.location.href)
+                showToast('📋 คัดลอกข้อความแล้ว')
+            }
+        }
+
+        async function sendLineNotify(message) {
+            if (CONFIG.lineToken === 'YOUR_LINE_TOKEN') return
+            
+            try {
+                await fetch('https://notify-api.line.me/api/notify', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${CONFIG.lineToken}`,
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `message=${encodeURIComponent(message)}`
+                })
+            } catch (error) {
+                console.error('LINE error:', error)
+            }
+        }
+
+        // ============================================
+        // UI HELPERS
+        // ============================================
+        
+        function getStoreStyle(store) {
+            const styles = {
+                "Lotus's": { bg: 'bg-[#00A651]', text: 'text-white' },
+                "Big C": { bg: 'bg-[#E30613]', text: 'text-white' },
+                "CJ More": { bg: 'bg-[#FFCC00]', text: 'text-black' }
+            }
+            return styles[store] || styles["Lotus's"]
+        }
+
+        function updateStatus(status, message) {
+            const dot = document.getElementById('statusDot')
+            const label = document.getElementById('lastUpdate')
+            
+            if (status === 'online') {
+                dot.className = 'w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse'
+            } else if (status === 'offline') {
+                dot.className = 'w-1.5 h-1.5 rounded-full bg-yellow-500'
+            } else {
+                dot.className = 'w-1.5 h-1.5 rounded-full bg-zinc-400 animate-pulse'
+            }
+            
+            label.textContent = message
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast')
+            const toastMsg = document.getElementById('toastMessage')
+            toastMsg.textContent = message
+            toast.classList.remove('hidden')
+            
+            clearTimeout(toast._timeout)
+            toast._timeout = setTimeout(() => {
+                toast.classList.add('hidden')
+            }, 3000)
+        }
+
+        function toggleAdmin() {
+            const panel = document.getElementById('adminPanel')
+            isAdminOpen = !isAdminOpen
+            panel.classList.toggle('hidden')
+            if (isAdminOpen) renderAdmin()
+        }
+
+        function loadMore() {
+            currentPage++
+            renderPromotions()
+        }
+
+        function refreshData() {
+            showToast('🔄 กำลังโหลดข้อมูลใหม่...')
+            loadPromotions()
+        }
+
+        // ============================================
+        // SAMPLE DATA (Fallback)
+        // ============================================
+        
+        function getSampleData() {
+            return [
+                {
+                    id: 1,
+                    store: "Lotus's",
+                    product: "ข้าวหอมมะลิ 5 กก. ตราฉัตร",
+                    old_price: 189,
+                    new_price: 149,
+                    discount: "ลด 21%",
+                    expiry: "15 พ.ค. 68",
+                    branch: "สาขา 304, สาขากบินทร์บุรี",
+                    distance: "0.8 กม.",
+                    image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=300&fit=crop",
+                    is_verified: true
+                },
+                {
+                    id: 2,
+                    store: "Big C",
+                    product: "นมยูเอชที โฟร์โมสต์ 180 มล. แพ็ค 12",
+                    old_price: 142,
+                    new_price: 99,
+                    discount: "ลด 30%",
+                    expiry: "14 พ.ค. 68",
+                    branch: "สาขาปราจีนบุรี, สาขา 304",
+                    distance: "1.2 กม.",
+                    image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300&h=300&fit=crop",
+                    is_verified: true
+                },
+                {
+                    id: 3,
+                    store: "CJ More",
+                    product: "มาม่า ต้มยำกุ้ง แพ็ค 10",
+                    old_price: 62,
+                    new_price: 49,
+                    discount: "ลด 21%",
+                    expiry: "13 พ.ค. 68",
+                    branch: "สาขาตลาด 304, สาขาหนองกี่",
+                    distance: "0.5 กม.",
+                    image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=300&h=300&fit=crop",
+                    is_verified: true
+                },
+                {
+                    id: 4,
+                    store: "Lotus's",
+                    product: "น้ำมันพืชองุ่น 1 ลิตร",
+                    old_price: 68,
+                    new_price: 42,
+                    discount: "ลด 38%",
+                    expiry: "16 พ.ค. 68",
+                    branch: "สาขา 304",
+                    distance: "0.7 กม.",
+                    image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300&h=300&fit=crop",
+                    is_verified: false
+                },
+                {
+                    id: 5,
+                    store: "Big C",
+                    product: "ผงซักฟอกบรีส 2.7 กก.",
+                    old_price: 199,
+                    new_price: 115,
+                    discount: "ลด 42%",
+                    expiry: "14 พ.ค. 68",
+                    branch: "สาขา 304",
+                    distance: "1.5 กม.",
+                    image: "https://images.unsplash.com/photo-1584305570199-d6a5c1ef52b3?w=300&h=300&fit=crop",
+                    is_verified: true
+                },
+                {
+                    id: 6,
+                    store: "CJ More",
+                    product: "ไข่ไก่เบอร์ 2 แผง 30 ฟอง",
+                    old_price: 135,
+                    new_price: 109,
+                    discount: "ลด 19%",
+                    expiry: "09 พ.ค. 68",
+                    branch: "สาขาตลาด 304, สาขาหนองกี่",
+                    distance: "0.5 กม.",
+                    image: "https://images.unsplash.com/photo-1484831094927-6f6a41a46a9d?w=300&h=300&fit=crop",
+                    is_verified: true
+                }
+            ]
+        }
+
+        // ============================================
+        // INIT
+        // ============================================
+        
+        // โหลดข้อมูลทันที
+        loadPromotions()
+
+        // Auto-refresh ทุก 5 นาที
+        setInterval(() => {
+            loadPromotions()
+        }, CONFIG.refreshInterval)
+
+        // ตรวจสอบการเชื่อมต่อ
+        window.addEventListener('online', () => {
+            showToast('📶 กลับมาออนไลน์แล้ว กำลังโหลดข้อมูลใหม่...')
+            loadPromotions()
+        })
+
+        // Service Worker (PWA)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(() => console.log('✅ PWA Ready'))
+                .catch(() => console.log('⚠️ PWA ไม่ทำงาน'))
+        }
+
+        console.log('🚀 โปรปราจีน V2 พร้อมใช้งาน!')
+        console.log(`📦 ข้อมูล ${allPromotions.length} รายการ`)
+    </script>
+</body>
+</html>
