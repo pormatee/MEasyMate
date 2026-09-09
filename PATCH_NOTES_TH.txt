@@ -1,0 +1,25 @@
+MEasyMate.com V2 Professional R7
+Date: 2026-09-09
+
+Purpose:
+- เปลี่ยนเว็บจาก Product Store-centric ให้เป็น MEasyMate AI & Digital Tools Ecosystem
+- เพิ่ม Tools / Learn / Updates / Help / About / Future Direction
+- ใช้ 10 strategic pains/opportunities 2026–2036 เป็น strategic lens โดยไม่แสดงว่าเป็นสินค้าพร้อมใช้
+- เพิ่ม LINE Official: https://lin.ee/YlHM4br
+- คง Visual Baseline V2: Blue / Cyan / Teal / White, Banner-first, Mobile-first
+
+Changed/new files:
+index.html
+products.html
+about.html
+learn.html
+future.html
+help.html
+contact.html
+updates.html
+downloads.html
+assets/css/home-v2.css
+assets/css/content-v2.css
+assets/js/site.js
+
+Local link validation: PASS (0 missing local links when applied over V1.1 deploy baseline)
