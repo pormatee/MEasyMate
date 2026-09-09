@@ -93,3 +93,20 @@
 .v2-footer-brand p{max-width:320px;margin:10px 0 0;color:#4b7086;font-size:13px;line-height:1.45}
 @media(max-width:780px){.v2-footer-grid{grid-template-columns:1.35fr 1fr 1fr;gap:20px}.v2-footer-brand{grid-column:1/-1}}
 @media(max-width:520px){.v2-footer-grid{grid-template-columns:1fr 1fr;gap:18px}.v2-footer-brand{grid-column:1/-1}.v2-footer-grid>div:nth-child(5){grid-column:1/-1}.home-v2 .v2-footer-pro{padding-top:24px}}
+
+/* MEasyMate R9 — Mobile UX Polish */
+@media(max-width:680px){
+  .home-v2 .container{width:min(100% - 18px,1120px)}
+  .home-v2 .nav{min-height:56px}.home-v2 .brand{gap:8px}.home-v2 .brand img{width:38px;height:38px}.home-v2 .brand-text{font-size:16px}.home-v2 .menu-btn{padding:7px 10px;border-radius:12px;font-size:18px;line-height:1}
+  .v2-hero{padding:8px 0 7px}.v2-banner{border-radius:16px}.v2-hero-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px;margin-top:8px}.v2-action{min-height:43px;padding:7px 9px;border-radius:13px;font-size:13px;gap:6px}.v2-action-icon{width:26px;height:26px;font-size:9px}
+  .v2-ecosystem{padding:5px 0 12px}.v2-panel{padding:13px 9px 10px;border-radius:18px}.v2-panel-heading{margin-bottom:9px}.v2-panel-heading h1{font-size:21px;letter-spacing:-.35px}.v2-panel-heading p{font-size:12.5px;margin-top:2px}.v2-handnote{display:none}
+  .v2-ecosystem-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px}.v2-eco-card{grid-template-columns:35px minmax(0,1fr) auto;gap:6px;min-height:59px;padding:7px;border-radius:13px}.v2-eco-icon{width:35px;height:35px}.v2-eco-icon svg{width:20px;height:20px}.v2-eco-copy strong{font-size:14px}.v2-eco-copy small{margin-top:2px;font-size:9.6px;line-height:1.17}.v2-eco-copy small br{display:none}.v2-chevron{font-size:19px}
+  .v2-trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:visible;gap:4px;margin:8px 0 0;padding:0;border:0;background:transparent}.v2-trust>div{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;padding:6px 2px;border:1px solid #c9e5f3;border-radius:11px;background:#e5f4fb}.v2-trust span{font-size:16px;line-height:1}.v2-trust strong{font-size:9.4px;line-height:1.05}.v2-trust small{display:none}
+  .v2-tools{padding:17px 0 19px}.v2-section-head{margin-bottom:9px}.v2-section-head h2{font-size:22px}.v2-section-head>a{font-size:11px}.v2-kicker{font-size:8.5px}.v2-tool-row{gap:9px;padding-bottom:5px}.v2-tool-card{flex-basis:min(76vw,280px);padding:13px}.v2-tool-top{grid-template-columns:50px 1fr;gap:9px}.v2-tool-icon{width:50px;height:50px;border-radius:14px;font-size:18px}.v2-tool-card h3{font-size:16px}.v2-tool-card p{font-size:12px;margin:9px 0 8px}.v2-text-link{margin-top:9px}
+  .v2-info-section{padding-top:20px;padding-bottom:20px}
+}
+@media(max-width:390px){
+  .v2-hero-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .v2-ecosystem-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .v2-action{font-size:12.5px}.v2-panel-heading h1{font-size:20px}.v2-eco-card{min-height:57px}
+}
