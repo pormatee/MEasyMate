@@ -379,3 +379,22 @@
     gap:10px 14px !important;
   }
 }
+
+/* MEasyMate R10.3 — Ultra Compact Mobile Footer */
+@media(max-width:680px){
+  .home-v2 .v2-footer-pro{padding-top:13px !important;padding-bottom:12px !important}
+  .v2-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:10px 14px !important}
+  .v2-footer-brand{grid-column:1/-1 !important;padding-bottom:3px !important}
+  .v2-footer-brand .brand img{width:34px !important;height:34px !important}
+  .v2-footer-brand .brand-text{font-size:17px !important}
+  .v2-footer-brand p{margin:4px 0 0 !important;font-size:10.8px !important;line-height:1.3 !important}
+  .v2-footer-grid h4{margin:0 0 4px !important;font-size:11.5px !important}
+  .v2-footer-grid>div:not(.v2-footer-brand) a{display:inline-block !important;margin:0 8px 3px 0 !important;font-size:10.5px !important;line-height:1.2 !important}
+  .v2-footer-grid>div:nth-child(5){grid-column:auto !important}
+  .home-v2 .footer-bottom{margin-top:8px !important;padding-top:8px !important;display:flex !important;flex-direction:row !important;flex-wrap:wrap !important;justify-content:space-between !important;gap:3px 10px !important;font-size:9.2px !important;line-height:1.2 !important}
+}
+@media(max-width:390px){
+  .v2-footer-grid{gap:9px 12px !important}
+  .v2-footer-grid>div:not(.v2-footer-brand) a{margin-right:6px !important;font-size:10px !important}
+  .home-v2 .footer-bottom{font-size:8.8px !important}
+}
