@@ -47,3 +47,57 @@
   .mm-hero{padding:14px 0 10px}.mm-hero-card{padding:18px 15px;border-radius:20px}.mm-hero h1{font-size:30px}.mm-hero p{font-size:13.5px}.mm-grid-2,.mm-grid-3,.mm-grid-4{grid-template-columns:1fr}.mm-section{padding:15px 0}.mm-section-head h2{font-size:22px}.mm-section-head{align-items:flex-start}.mm-card{padding:14px}.mm-footer-grid{grid-template-columns:1fr 1fr}.mm-footer-grid>div:first-child{grid-column:1/-1}.mm-footer-bottom{flex-direction:column}.mm-contact-card{grid-template-columns:46px 1fr}.mm-contact-card img{width:46px;height:46px}.mm-contact-card .mm-btn{grid-column:1/-1}.mm-banner-mini{border-radius:15px}
 }
 @media(max-width:390px){.v2-focus-grid{grid-template-columns:1fr}.mm-actions{display:grid}.mm-btn{width:100%}}
+
+/* MEasyMate R11 — Products + Factory Detail UX */
+.mm-products .mm-status-legend{margin:6px 0 9px}
+.mm-product-detail .mm-availability-note{margin-top:7px;padding:7px 9px;border-radius:10px;background:#eef6fa;color:#60798b;text-align:center;font-size:10.5px;font-weight:700}
+
+@media(max-width:760px){
+  .mm-products .mm-hero{padding:9px 0 7px}
+  .mm-products .mm-hero-card{margin-top:7px!important;padding:13px 12px;border-radius:16px}
+  .mm-products .mm-hero h1{font-size:23px;line-height:1.08;margin:7px 0 4px}
+  .mm-products .mm-hero p{font-size:11.5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .mm-products .mm-section{padding:9px 0 12px}
+  .mm-products .category-bar{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:6px;margin:0 -9px 6px;padding:0 9px 3px;scrollbar-width:none}
+  .mm-products .category-bar::-webkit-scrollbar{display:none}
+  .mm-products .category-bar button{flex:0 0 auto;padding:7px 11px;font-size:11px}
+  .mm-products .mm-status-legend .mm-pill{padding:5px 8px;font-size:9.3px;line-height:1.2}
+  .mm-products .product-grid{grid-template-columns:1fr;gap:8px}
+  .mm-products .product-card{padding:11px;border-radius:15px}
+  .mm-products .product-top{gap:8px}
+  .mm-products .product-icon{width:46px;height:46px;border-radius:13px;font-size:17px}
+  .mm-products .badge{padding:3px 7px;font-size:8.8px}
+  .mm-products .product-card h3{margin-top:3px;font-size:15.5px;line-height:1.08}
+  .mm-products .by{font-size:9.5px}
+  .mm-products .product-summary{margin:7px 0 6px;font-size:11px;line-height:1.32}
+  .mm-products .chips{gap:4px;margin-bottom:7px}
+  .mm-products .chip{padding:3px 6px;font-size:8.8px}
+  .mm-products .card-meta{padding-top:6px;font-size:9.8px}
+  .mm-products .card-actions{grid-template-columns:1fr 1fr;gap:6px;margin-top:7px}
+  .mm-products .card-actions .btn{min-height:36px;padding:6px 7px;border-radius:10px;font-size:10.8px}
+
+  .mm-product-detail .page-hero{padding:14px 0 10px}
+  .mm-product-detail .breadcrumbs{margin-bottom:6px;font-size:10px}
+  .mm-product-detail .page-hero .badge{padding:4px 7px;font-size:9px}
+  .mm-product-detail .page-hero h1{margin:6px 0 4px;font-size:28px;line-height:1.04;letter-spacing:-.4px}
+  .mm-product-detail .page-hero p{font-size:12.5px;line-height:1.42}
+  .mm-product-detail .section{padding:9px 0 13px}
+  .mm-product-detail .detail-grid{display:flex;flex-direction:column;gap:8px}
+  .mm-product-detail .detail-side{order:-1;position:static;padding:11px;border-radius:15px}
+  .mm-product-detail .detail-side .product-icon{width:44px;height:44px;border-radius:12px;font-size:16px}
+  .mm-product-detail .detail-side h3{font-size:15.5px!important}
+  .mm-product-detail .side-row{padding:6px 0;font-size:10.8px}
+  .mm-product-detail .detail-side .btn{min-height:37px;padding:6px 9px;border-radius:10px;font-size:11px}
+  .mm-product-detail .detail-main{padding:12px;border-radius:15px}
+  .mm-product-detail .detail-main h2{margin:0 0 8px;font-size:19px;line-height:1.1}
+  .mm-product-detail .detail-main>p{margin:6px 0 0;font-size:11.5px;line-height:1.45;color:#5d768a}
+  .mm-product-detail .feature-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+  .mm-product-detail .feature-list li{padding:7px 8px;border-radius:9px;font-size:10.5px}
+  .mm-product-detail .privacy-box{padding:10px;border-radius:12px}
+  .mm-product-detail .privacy-box h3{font-size:13.5px}
+  .mm-product-detail .privacy-box p{font-size:10.7px;line-height:1.42}
+  .mm-product-detail .detail-main>div[style*="height:16px"],
+  .mm-product-detail .detail-main>div[style*="height:24px"],
+  .mm-product-detail .detail-side>div[style*="height:12px"],
+  .mm-product-detail .detail-side>div[style*="height:14px"]{height:7px!important}
+}
