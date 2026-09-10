@@ -101,3 +101,73 @@
   .mm-product-detail .detail-side>div[style*="height:12px"],
   .mm-product-detail .detail-side>div[style*="height:14px"]{height:7px!important}
 }
+
+/* MEasyMate R11.1 — Factory Detail Final Polish */
+@media(max-width:760px){
+  /* Remove the narrow summary-card / empty-right-space problem. */
+  .mm-product-detail .detail-side,
+  .mm-product-detail .detail-main{
+    width:100% !important;
+    max-width:none !important;
+    box-sizing:border-box !important;
+  }
+
+  .mm-product-detail .page-hero h1{
+    font-size:26px !important;
+    line-height:1.05 !important;
+  }
+
+  /* Compact professional footer for product detail pages. */
+  .mm-product-detail .footer{
+    padding:14px 0 10px !important;
+  }
+
+  .mm-product-detail .footer-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:9px 14px !important;
+  }
+
+  .mm-product-detail .footer-brand{
+    grid-column:1/-1 !important;
+    padding-bottom:2px !important;
+  }
+
+  .mm-product-detail .footer-brand .brand img{
+    width:34px !important;
+    height:34px !important;
+  }
+
+  .mm-product-detail .footer-brand .brand-text{
+    font-size:17px !important;
+  }
+
+  .mm-product-detail .footer-brand p{
+    margin:4px 0 0 !important;
+    font-size:10.5px !important;
+    line-height:1.3 !important;
+  }
+
+  .mm-product-detail .footer h4{
+    margin:0 0 4px !important;
+    font-size:11.5px !important;
+  }
+
+  .mm-product-detail .footer a{
+    display:inline-block !important;
+    padding:0 !important;
+    margin:0 7px 3px 0 !important;
+    font-size:10px !important;
+    line-height:1.2 !important;
+  }
+
+  .mm-product-detail .footer-bottom{
+    margin-top:8px !important;
+    padding-top:8px !important;
+    flex-direction:row !important;
+    flex-wrap:wrap !important;
+    justify-content:space-between !important;
+    gap:3px 8px !important;
+    font-size:8.8px !important;
+    line-height:1.2 !important;
+  }
+}
