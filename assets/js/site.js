@@ -63,3 +63,70 @@ document.addEventListener('DOMContentLoaded', () => {
     applyFilter(requestedCategory);
   }
 });
+
+
+/* P6 COMBINED PRODUCT FILTER START */
+(() => {
+  const productGrid = document.querySelector('.product-grid');
+  const cards = [...document.querySelectorAll('.product-card[data-product-id]')];
+  const statusButtons = [...document.querySelectorAll('[data-status-filter]')];
+  if (!productGrid || !cards.length || !statusButtons.length) return;
+
+  let activeStatus = null;
+
+  const getActiveCategory = () => {
+    const active =
+      document.querySelector('[data-filter].active') ||
+      document.querySelector('[data-filter].is-active') ||
+      document.querySelector('[data-category-filter].active') ||
+      document.querySelector('[data-category-filter].is-active');
+    if (!active) return 'All';
+    return active.getAttribute('data-filter') ||
+           active.getAttribute('data-category-filter') ||
+           'All';
+  };
+
+  const applyCombinedFilter = () => {
+    const category = getActiveCategory();
+    cards.forEach(card => {
+      const cardCategory = card.getAttribute('data-category') || 'All';
+      const cardStatus = card.getAttribute('data-status') || '';
+      const categoryOK = category === 'All' || category === cardCategory;
+      const statusOK = !activeStatus || activeStatus === cardStatus;
+      card.hidden = !(categoryOK && statusOK);
+    });
+  };
+
+  statusButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const value = btn.getAttribute('data-status-filter');
+      if (activeStatus === value) {
+        activeStatus = null;
+        btn.classList.remove('is-active');
+        btn.setAttribute('aria-pressed', 'false');
+      } else {
+        activeStatus = value;
+        statusButtons.forEach(b => {
+          b.classList.toggle('is-active', b === btn);
+          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+        });
+      }
+      applyCombinedFilter();
+    });
+    btn.setAttribute('aria-pressed', 'false');
+  });
+
+  // Existing category filter remains responsible for category state.
+  // Re-apply after its click handler has run so category + status work together.
+  document.addEventListener('click', (event) => {
+    if (event.target.closest('[data-filter], [data-category-filter]')) {
+      setTimeout(applyCombinedFilter, 0);
+    }
+  });
+
+  // If browser navigation/query-string changes the category state.
+  window.addEventListener('popstate', () => setTimeout(applyCombinedFilter, 0));
+
+  applyCombinedFilter();
+})();
+/* P6 COMBINED PRODUCT FILTER END */

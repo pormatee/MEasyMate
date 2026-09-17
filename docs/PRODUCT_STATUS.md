@@ -1,13 +1,30 @@
-# MEasyMate Product Status Standard
+# MEasyMate Product Status Standard — Platform Showcase V1
 
-| Code | Thai display | Meaning |
+| Code | Public display | Meaning |
 |---|---|---|
-| available | พร้อมใช้งาน | Ready for general use |
-| trial | ทดลองใช้ | Trial is available |
-| beta | Beta | Usable but still being validated |
-| in-development | กำลังพัฒนา | Not yet generally available |
-| research | วิจัย / ทดสอบ | Research, discovery or technical validation |
-| coming-soon | เร็ว ๆ นี้ | Planned, but not generally available |
+| beta | ทดลองใช้ / Beta | A real implementation exists and is in a controlled validation/pilot stage |
+| developing | กำลังพัฒนา | Real development exists, but it is not generally available |
+| concept-preview | Concept Preview | Direction/mockup exists; release readiness or source-of-truth is not sufficient |
+| future-direction | Future Direction | Long-term direction, not a released product |
 
-`Platform`, `Local Product`, and similar terms are product types, not statuses.
-CTA must follow actual status. Do not show Buy/Download when a product is not actually available.
+## Separate availability from maturity
+Examples of availability:
+- `release-gated`
+- `pilot`
+- `not-public`
+- `source-reverify`
+
+A deployed URL does not automatically mean `beta` access should be publicly linked.
+
+## Concept disclaimer
+Every Concept Preview detail page must display:
+
+`Concept Preview — หน้าตาและฟังก์ชันอาจเปลี่ยนแปลง`
+
+## CTA rule
+- Beta: request/access trial only when release gate allows it
+- Developing: follow progress / ask for information
+- Concept Preview: view concept / give feedback
+- Future Direction: view roadmap/direction
+
+Do not show Buy/Download/Open App when availability is not verified.
