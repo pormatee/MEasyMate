@@ -7,12 +7,12 @@
   "tools": [
     {
       "name": "Deadline Checker",
-      "href": "/tools/deadline-checker.html",
+      "href": "../tools/deadline-checker.html",
       "available": true
     },
     {
       "name": "Safe Payment Checklist",
-      "href": "/tools/safe-payment-checklist.html",
+      "href": "../tools/safe-payment-checklist.html",
       "available": true
     }
   ],
