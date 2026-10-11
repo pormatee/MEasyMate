@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const normalize = x => String(x || '').normalize('NFKC').trim().toLocaleLowerCase('th');
-  const allowedHref = x => /^(?:product\/[a-z0-9-]+\.html|tools\/[a-z0-9-]+\.html|learn\.html|hub\/index\.html)$/.test(x);
+  const allowedHref = x => /^(?:product\/[a-z0-9-]+\.html|guides\/[a-z0-9-]+\.html|tools\/[a-z0-9-]+\.html|learn\.html|hub\/index\.html)$/.test(x);
   const scoreItem = (item, query) => {
     if (!query) return 1;
     const terms = normalize(query).split(/\s+/).filter(Boolean);
