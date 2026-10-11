@@ -1,0 +1,40 @@
+/* MEasyMate V3.12 | website-only engagement layer; no Product CSS */
+.mm-ai-v310 .eng312-section{padding:30px 0 42px}
+.mm-ai-v310 .eng312-head{margin:0 0 19px;max-width:790px}
+.mm-ai-v310 .eng312-kicker{color:#255bbd;font-size:12px;font-weight:850;letter-spacing:.065em}
+.mm-ai-v310 .eng312-head h2{color:#102c57;font-size:clamp(25px,3.2vw,36px);line-height:1.3;margin:7px 0}
+.mm-ai-v310 .eng312-head p{color:#3c5273;font-size:15px;line-height:1.75;margin:5px 0}
+.mm-ai-v310 .eng312-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.mm-ai-v310 .eng312-card{display:flex;flex-direction:column;gap:9px;padding:21px;min-height:225px;border-radius:20px;
+  border:1px solid #d6e2f7;background:#fff;box-shadow:0 10px 28px #142f6611;color:#183355;text-decoration:none}
+.mm-ai-v310 .eng312-card:hover{border-color:#7e9de9;box-shadow:0 14px 32px #14326620}
+.mm-ai-v310 .eng312-card .eng312-symbol{font-size:27px;line-height:1.2}
+.mm-ai-v310 .eng312-card strong{color:#123166;font-size:19px;line-height:1.38}
+.mm-ai-v310 .eng312-card p{color:#405575;font-size:14px;line-height:1.7;margin:0}
+.mm-ai-v310 .eng312-card small{font-size:13px;font-weight:850;color:#1853b4;margin-top:auto}
+.mm-ai-v310 .eng312-panel{background:linear-gradient(125deg,#0b214c,#1f3576);border:1px solid #6d8dd2;
+  padding:clamp(19px,4vw,28px);border-radius:22px;box-shadow:0 16px 33px #152e6228}
+.mm-ai-v310 .eng312-panel h2{color:#fff;font-size:clamp(22px,3vw,29px);margin:0 0 8px}
+.mm-ai-v310 .eng312-panel p,.mm-ai-v310 .eng312-panel li{color:#e1edff;font-size:15px;line-height:1.8}
+.mm-ai-v310 .eng312-panel a{color:#fff;display:inline-flex;align-items:center;min-height:44px;padding:10px 17px;
+  border-radius:12px;background:#2867e9;font-size:14px;font-weight:800;text-decoration:none}
+.mm-ai-v310 .eng312-panel a.secondary{background:#fff;color:#163c79}
+.mm-ai-v310 .eng312-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
+.mm-ai-v310 .eng312-date{color:#315b9a;font-size:13px;font-weight:800}
+/* V3.12 also resolves old narrow mobile news carousel: all cards remain visible and readable. */
+.mm-ai-v310.home-v2 .v2-news-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  overflow:visible!important;scroll-snap-type:none!important;margin:0!important;padding:0!important;gap:13px!important}
+.mm-ai-v310.home-v2 .v2-news-card{min-width:0;min-height:205px;padding:18px!important;border-radius:20px!important}
+.mm-ai-v310.home-v2 .v2-news-card strong{font-size:17px!important;line-height:1.4!important;color:#123166}
+.mm-ai-v310.home-v2 .v2-news-card p{font-size:14px!important;line-height:1.7!important;color:#405575;
+  display:block!important;overflow:visible!important;-webkit-line-clamp:unset!important}
+.mm-ai-v310.home-v2 .v2-news-type{font-size:11px!important;color:#1754a6}
+.mm-ai-v310.home-v2 .v2-news-card small{font-size:12px!important;color:#2458a8}
+@media(max-width:850px){.mm-ai-v310 .eng312-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mm-ai-v310.home-v2 .v2-news-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:600px){.mm-ai-v310 .eng312-grid{grid-template-columns:1fr}
+  .mm-ai-v310 .eng312-card{min-height:auto;padding:19px}
+  .mm-ai-v310.home-v2 .v2-news-grid{grid-template-columns:1fr!important}
+  .mm-ai-v310.home-v2 .v2-news-card{min-height:auto;padding:18px!important}
+  .mm-ai-v310 .eng312-section{padding:24px 0 30px}}
+@media(prefers-reduced-motion:reduce){.mm-ai-v310 .eng312-card{transition:none}}
