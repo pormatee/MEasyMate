@@ -1,0 +1,37 @@
+/* MEasyMate V3 Center Point: isolated, additive styling */
+.mm-v3-hub{padding:14px 0 28px;background:#f5fbff;color:#163a53}
+.mm-v3-wrap{background:white;border:1px solid #cbe4f1;border-radius:22px;padding:22px;box-shadow:0 7px 21px rgba(3,67,117,.06)}
+.mm-v3-wrap h2,.mm-v3-tool h1{margin:0 0 8px;color:#073b64;font-size:clamp(23px,4vw,32px);line-height:1.25;letter-spacing:0}
+.mm-v3-intro{margin:0 0 15px;color:#55758b;font-size:14px}
+.mm-v3-search{display:flex;gap:9px}
+.mm-v3-search input,.mm-v3-tool input[type=date]{width:100%;min-width:0;border:1px solid #a5cde1;border-radius:12px;padding:12px 14px;font:inherit;font-size:16px;background:white;color:#12364e}
+.mm-v3-search button,.mm-v3-tool button{border:0;border-radius:12px;padding:12px 17px;background:#0879d9;color:#fff;font:inherit;font-weight:800;cursor:pointer}
+.mm-v3-search button{white-space:nowrap}
+.mm-v3-search input:focus-visible,.mm-v3-search button:focus-visible,.mm-v3-card:focus-visible,.mm-v3-tool a:focus-visible,.mm-v3-tool button:focus-visible,.mm-v3-tool input:focus-visible{outline:3px solid #0b9ecb;outline-offset:2px}
+.mm-v3-results{margin:13px 0 0}.mm-v3-results[hidden]{display:none}
+.mm-v3-results p{margin:0 0 8px;color:#46667d;font-size:13px}
+.mm-v3-results ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.mm-v3-results a{display:block;padding:10px 12px;background:#f0f9ff;border:1px solid #d0e8f5;border-radius:10px;font-weight:750;color:#075c9d;font-size:14px}
+.mm-v3-results small{display:block;color:#53728a;font-weight:500;font-size:12px;margin-top:4px}
+.mm-v3-heading{margin:20px 0 10px;font-weight:850;color:#103b5b}
+.mm-v3-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.mm-v3-card{display:block;padding:15px;border:1px solid #d3e7f1;border-radius:14px;background:#f8fcff;color:#083f6e;text-decoration:none}
+.mm-v3-card strong{display:block;font-size:16px}.mm-v3-card span{display:block;margin:5px 0 0;font-size:12px;color:#557489;line-height:1.45}
+.mm-v3-tag{display:inline-block!important;background:#e4f7ed;color:#18744a!important;border-radius:100px;padding:4px 9px;font-size:11px!important;font-weight:850;margin-bottom:7px}
+.mm-v3-tool{min-height:100vh;background:#f5fbff;color:#16384d}
+.mm-v3-mininav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0}
+.mm-v3-mininav a{font-weight:800;color:#0869ae}.mm-v3-brand{display:flex;align-items:center;gap:9px}
+.mm-v3-brand img{width:40px;height:40px;object-fit:cover;border-radius:50%}
+.mm-v3-tool main{padding:12px 0 44px}.mm-v3-tool .mm-v3-panel{max-width:720px;margin:auto;background:white;border:1px solid #d2e8f3;border-radius:22px;padding:24px}
+.mm-v3-tool .mm-v3-lead{color:#56758a;margin:0 0 21px}
+.mm-v3-tool label.mm-v3-label{display:block;margin:14px 0 8px;font-weight:800}
+.mm-v3-tool .mm-v3-inputrow{display:flex;gap:9px;align-items:stretch}
+.mm-v3-tool .mm-v3-result{background:#edf8ff;border:1px solid #cce6f6;border-radius:14px;padding:16px;margin-top:16px}
+.mm-v3-tool .mm-v3-result[hidden]{display:none}.mm-v3-tool .mm-v3-result strong{display:block;font-size:22px;color:#06456f}
+.mm-v3-tool .mm-v3-note{background:#fff9eb;border:1px solid #f0dab2;border-radius:12px;padding:12px 14px;color:#694d23;margin-top:20px;font-size:13px;line-height:1.6}
+.mm-v3-tool .mm-v3-privacy{color:#56738b;font-size:12px;margin:15px 0}
+.mm-v3-tool .mm-v3-check{display:flex;align-items:flex-start;gap:10px;border:1px solid #d5e7f0;border-radius:12px;padding:13px 12px;margin:9px 0;cursor:pointer;line-height:1.5}
+.mm-v3-tool .mm-v3-check input{width:21px;height:21px;flex:0 0 21px;margin:1px 0 0;accent-color:#0879d9}
+.mm-v3-tool progress{width:100%;height:11px;accent-color:#0879d9}
+.mm-v3-tool .mm-v3-footer{border-top:1px solid #dcebf2;padding:18px 0;text-align:center;color:#607e93;font-size:12px}
+@media(max-width:650px){.mm-v3-wrap{padding:16px;border-radius:17px}.mm-v3-cards{grid-template-columns:1fr}.mm-v3-results ul{grid-template-columns:1fr}.mm-v3-search{flex-wrap:wrap}.mm-v3-search button{width:100%}.mm-v3-tool .mm-v3-panel{padding:17px}.mm-v3-tool .mm-v3-inputrow{flex-direction:column}.mm-v3-tool .mm-v3-inputrow button{min-height:46px}}

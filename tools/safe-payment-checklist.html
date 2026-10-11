@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="th"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0879d9"><meta name="description" content="เช็กลิสต์ความเสี่ยงก่อนโอนเงิน ใช้ฟรีและไม่รับรองความปลอดภัยของธุรกรรม">
+<title>Safe Payment Checklist — เช็กก่อนโอนเงิน | MEasyMate</title><link rel="canonical" href="https://measymate.com/tools/safe-payment-checklist.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="MEasyMate">
+<meta property="og:title" content="Safe Payment Checklist — เช็กก่อนโอนเงิน | MEasyMate"><meta property="og:description" content="เช็กลิสต์ความเสี่ยงก่อนโอนเงิน ใช้ฟรีและไม่รับรองความปลอดภัยของธุรกรรม">
+<meta property="og:url" content="https://measymate.com/tools/safe-payment-checklist.html">
+<meta property="og:image" content="https://measymate.com/assets/brand/measymate-banner.jpg">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="../assets/brand/measymate-logo.jpg"><link rel="stylesheet" href="../assets/css/site.css"><link rel="stylesheet" href="../assets/css/v3-hub.css?v=1">
+</head><body class="mm-v3-tool">
+<header class="container mm-v3-mininav"><a href="../index.html" class="mm-v3-brand"><img src="../assets/brand/measymate-logo.jpg" alt="" width="40" height="40">MEasyMate</a><a href="../index.html">← หน้าแรก</a></header>
+<main class="container"><section class="mm-v3-panel">
+<p class="mm-v3-tag">ฟรี • ไม่ต้องสมัคร</p><h1>🛡️ เช็กลิสต์ก่อนโอนเงิน</h1>
+<p class="mm-v3-lead">ทบทวนความเสี่ยงก่อนจ่ายเงิน โดยเฉพาะเมื่อซื้อสินค้าหรือชำระเงินให้บุคคลที่ไม่คุ้นเคย</p>
+<div id="payment-list" role="group" aria-label="รายการตรวจความเสี่ยง">
+<label class="mm-v3-check"><input type="checkbox"><span>ตรวจชื่อผู้รับเงินและบัญชีกับข้อมูลที่ตกลงไว้จากแหล่งที่เชื่อถือได้</span></label>
+<label class="mm-v3-check"><input type="checkbox"><span>ยืนยันตัวตนผู้ขายหรือคู่ค้าผ่านช่องทางที่ตรวจสอบได้</span></label>
+<label class="mm-v3-check"><input type="checkbox"><span>ถ้ามีคำขอเปลี่ยนบัญชี ได้ติดต่อยืนยันผ่านช่องทางเดิมอย่างอิสระแล้ว</span></label>
+<label class="mm-v3-check"><input type="checkbox"><span>ไม่ถูกเร่งให้โอนทันทีด้วยคำขู่หรือข้อเสนอที่ดีผิดปกติ</span></label>
+<label class="mm-v3-check"><input type="checkbox"><span>ไม่ได้ให้ OTP รหัสผ่าน หรือข้อมูลส่วนบุคคลสำคัญกับผู้อื่น</span></label>
+<label class="mm-v3-check"><input type="checkbox"><span>ตรวจจำนวนเงิน เงื่อนไข และรายละเอียดก่อนยืนยันธุรกรรม</span></label>
+</div>
+<p id="payment-status" role="status" aria-live="polite">ตรวจแล้ว 0 จาก 6 ข้อ</p>
+<progress id="payment-progress" value="0" max="6" aria-label="ความคืบหน้าเช็กลิสต์"></progress>
+<p class="mm-v3-note"><strong>สำคัญ:</strong> เช็กครบทุกข้อก็ไม่รับรองว่าธุรกรรมปลอดภัย และไม่ใช่การยืนยันสลิป หากสงสัย ให้หยุดการโอนและตรวจสอบกับธนาคารหรือคู่ค้าผ่านช่องทางทางการก่อน</p>
+<p class="mm-v3-privacy">ไม่ขอเลขบัญชี ชื่อผู้รับ หรือข้อมูลธุรกรรม และไม่บันทึกผลการตรวจ</p>
+<a href="../learn.html">อ่าน Easy Guides →</a>
+</section></main>
+<footer class="mm-v3-footer"><div class="container">MEasyMate • Make Everything Easy · <a href="../privacy.html">Privacy</a> · <a href="../hub/">Products</a></div></footer>
+<script>(()=>{'use strict';
+const inputs=[...document.querySelectorAll('#payment-list input[type="checkbox"]')];
+const text=document.getElementById('payment-status');const progress=document.getElementById('payment-progress');
+function update(){const count=inputs.filter(input=>input.checked).length;
+text.textContent='ตรวจแล้ว '+count+' จาก '+inputs.length+' ข้อ'+(count===inputs.length?' — ยังต้องตรวจสอบหลักฐานและใช้วิจารณญาณ':'');progress.value=count;}
+inputs.forEach(input=>input.addEventListener('change',update));
+})();</script>
+</body></html>

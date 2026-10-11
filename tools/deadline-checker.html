@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="th"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0879d9"><meta name="description" content="เครื่องมือฟรีสำหรับตรวจวันครบกำหนดของประกัน ภาษีรถ หรือเอกสาร คำนวณในเครื่องไม่ส่งข้อมูล">
+<title>Deadline Checker — ตรวจวันครบกำหนด | MEasyMate</title><link rel="canonical" href="https://measymate.com/tools/deadline-checker.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="MEasyMate">
+<meta property="og:title" content="Deadline Checker — ตรวจวันครบกำหนด | MEasyMate"><meta property="og:description" content="เครื่องมือฟรีสำหรับตรวจวันครบกำหนดของประกัน ภาษีรถ หรือเอกสาร คำนวณในเครื่องไม่ส่งข้อมูล">
+<meta property="og:url" content="https://measymate.com/tools/deadline-checker.html">
+<meta property="og:image" content="https://measymate.com/assets/brand/measymate-banner.jpg">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="../assets/brand/measymate-logo.jpg"><link rel="stylesheet" href="../assets/css/site.css"><link rel="stylesheet" href="../assets/css/v3-hub.css?v=1">
+</head><body class="mm-v3-tool">
+<header class="container mm-v3-mininav"><a href="../index.html" class="mm-v3-brand"><img src="../assets/brand/measymate-logo.jpg" alt="" width="40" height="40">MEasyMate</a><a href="../index.html">← หน้าแรก</a></header>
+<main class="container"><section class="mm-v3-panel">
+<p class="mm-v3-tag">ฟรี • ไม่ต้องสมัคร</p><h1>📅 ตรวจวันครบกำหนด</h1>
+<p class="mm-v3-lead">เช็กว่าเหลืออีกกี่วันก่อนครบกำหนด เช่น ประกันรถ ภาษีรถ หรือเอกสารสำคัญ</p>
+<form id="deadline-form"><label class="mm-v3-label" for="deadline-date">เลือกวันที่ครบกำหนด</label>
+<div class="mm-v3-inputrow"><input id="deadline-date" type="date" required><button type="submit">ตรวจสอบวัน</button></div></form>
+<div id="deadline-result" class="mm-v3-result" role="status" aria-live="polite" hidden><strong id="deadline-head"></strong><p id="deadline-detail"></p></div>
+<p class="mm-v3-note">เครื่องมือนี้คำนวณจำนวนวันเท่านั้น ไม่ส่งการแจ้งเตือนอัตโนมัติ และไม่ยืนยันวันหมดอายุจากหน่วยงานหรือบริษัทประกัน กรุณาตรวจเอกสารจริงอีกครั้ง</p>
+<p class="mm-v3-privacy">คำนวณเฉพาะในอุปกรณ์ ไม่บันทึกและไม่ส่งวันที่ที่กรอกไปยัง MEasyMate</p>
+<a href="../hub/">ดูเครื่องมืออื่น →</a>
+</section></main>
+<footer class="mm-v3-footer"><div class="container">MEasyMate • Make Everything Easy · <a href="../privacy.html">Privacy</a> · <a href="../hub/">Products</a></div></footer>
+<script>(()=>{'use strict';
+const form=document.getElementById('deadline-form');const field=document.getElementById('deadline-date');
+const panel=document.getElementById('deadline-result');
+function dateNumber(y,m,d){
+  if(!Number.isInteger(y)||!Number.isInteger(m)||!Number.isInteger(d)||y<1000||y>9999)return null;
+  const ms=Date.UTC(y,m-1,d);const v=new Date(ms);
+  if(v.getUTCFullYear()!==y||v.getUTCMonth()!==m-1||v.getUTCDate()!==d)return null;
+  return Math.floor(ms/86400000);
+}
+form.addEventListener('submit',event=>{
+  event.preventDefault();
+  const parts=field.value.split('-').map(Number);
+  const target=parts.length===3?dateNumber(parts[0],parts[1],parts[2]):null;
+  if(target===null){field.setCustomValidity('กรุณาเลือกวันที่ที่ถูกต้อง');field.reportValidity();return;}
+  field.setCustomValidity('');
+  const now=new Date();const today=dateNumber(now.getFullYear(),now.getMonth()+1,now.getDate());
+  const left=target-today;
+  document.getElementById('deadline-head').textContent=left===0?'ครบกำหนดวันนี้':left>0?'เหลือ '+left+' วัน':'เลยกำหนด '+Math.abs(left)+' วัน';
+  document.getElementById('deadline-detail').textContent=left>0?(left<=30?'ใกล้ครบกำหนด ควรเตรียมตรวจสอบเอกสาร':'ยังมีเวลาก่อนครบกำหนด'):'ตรวจสอบสถานะกับหน่วยงานหรือผู้ให้บริการ';
+  panel.hidden=false;
+});
+field.addEventListener('input',()=>{field.setCustomValidity('');panel.hidden=true;});
+})();</script>
+</body></html>
