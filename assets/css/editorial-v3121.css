@@ -53,3 +53,90 @@ body.mm-ai-v310.ep-page{background:radial-gradient(ellipse at 5% 5%,#dfecff,tran
 .mm-ai-v310 .ep-article .ins311-next a{width:100%;justify-content:center;text-align:center}
 .mm-ai-v310 .ep-article .ep-body>ol,.mm-ai-v310 .ep-article .ep-body>ul{padding:17px 16px 17px 39px}}
 @media(prefers-reduced-motion:reduce){.mm-ai-v310 .ep-article *{scroll-behavior:auto}}
+
+/* V3.12.2: compact mobile editorial layout; desktop unchanged. */
+@media (max-width:650px){
+  /* Header: no second line of huge navigation chips. */
+  body.mm-ai-v310.ep-page .header .nav{
+    min-height:57px;display:flex;flex-wrap:nowrap;align-items:center;
+    gap:5px;justify-content:space-between;
+  }
+  body.mm-ai-v310.ep-page .header .brand{
+    flex:0 0 auto;min-width:0;gap:5px;font-size:14px;
+  }
+  body.mm-ai-v310.ep-page .header .brand img{
+    width:32px;height:32px;flex:0 0 32px;
+  }
+  body.mm-ai-v310.ep-page .header .brand-text small{display:none}
+  body.mm-ai-v310.ep-page .ins311-topnav{
+    display:flex;flex:0 1 auto;min-width:0;flex-wrap:nowrap;gap:3px;
+  }
+  body.mm-ai-v310.ep-page .ins311-topnav a{
+    font-size:11px;padding:5px 6px;min-height:33px;display:inline-flex;
+    align-items:center;justify-content:center;white-space:nowrap;border-radius:8px;
+  }
+  /* Article hero: roughly a third shorter, still recognizable as Modern AI. */
+  body.mm-ai-v310.ep-page .ins311-breadcrumb{
+    margin:10px auto 9px;padding:0 15px;font-size:12px;line-height:1.5;
+  }
+  body.mm-ai-v310.ep-page .ins311-article.ep-article{
+    margin:0 10px 22px;border-radius:17px;
+  }
+  body.mm-ai-v310.ep-page .ep-article .ep-hero{
+    padding:19px 18px 20px;
+  }
+  body.mm-ai-v310.ep-page .ep-article .ep-hero:before{
+    width:310px;height:310px;right:-145px;top:-183px;
+  }
+  body.mm-ai-v310.ep-page .ep-article .ep-supra{
+    gap:6px;font-size:10px;line-height:1.35;letter-spacing:.035em;
+  }
+  body.mm-ai-v310.ep-page .ep-article .ep-supra .ep-mark{
+    width:25px;height:25px;font-size:17px;border-radius:8px;
+  }
+  body.mm-ai-v310.ep-page .ep-article .ep-hero .ins311-label{
+    margin-top:11px;padding:5px 10px;font-size:11px;
+  }
+  body.mm-ai-v310.ep-page .ep-article .ep-hero h1{
+    font-size:clamp(23px,6.6vw,28px);line-height:1.3;
+    margin:11px 0 9px;letter-spacing:-.02em;
+  }
+  body.mm-ai-v310.ep-page .ep-article .ep-hero .ins311-intro{
+    font-size:14px;line-height:1.6;margin:0;
+  }
+  body.mm-ai-v310.ep-page .ep-article .ep-hero-meta{
+    gap:6px;margin-top:12px;
+  }
+  body.mm-ai-v310.ep-page .ep-article .ep-hero-meta span{
+    font-size:10px;padding:4px 7px;line-height:1.35;
+  }
+  /* Keep article navigation on one swipeable row, with content immediately below. */
+  body.mm-ai-v310.ep-page .ep-article .ep-body{
+    padding:17px 17px 25px;
+  }
+  body.mm-ai-v310.ep-page .ep-article .ep-jump{
+    flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;
+    gap:6px;padding:10px;margin-bottom:18px;border-radius:12px;
+    scrollbar-width:thin;
+  }
+  body.mm-ai-v310.ep-page .ep-article .ep-jump strong{
+    flex:0 0 auto;white-space:nowrap;font-size:12px;margin-right:4px;
+  }
+  body.mm-ai-v310.ep-page .ep-article .ep-jump a{
+    flex:0 0 auto;min-height:33px;padding:5px 9px;
+    white-space:nowrap;font-size:12px;
+  }
+  body.mm-ai-v310.ep-page .ep-article .ep-body>h2{
+    margin:26px 0 11px;padding-left:12px;font-size:20px;
+  }
+  body.mm-ai-v310.ep-page .ep-article .ep-body>h2:first-of-type{margin-top:8px}
+  body.mm-ai-v310.ep-page .ep-article .ep-body>p{
+    font-size:15px;line-height:1.85;
+  }
+}
+@media (max-width:355px){
+  body.mm-ai-v310.ep-page .header .brand{font-size:12px}
+  body.mm-ai-v310.ep-page .header .brand img{width:27px;height:27px;flex-basis:27px}
+  body.mm-ai-v310.ep-page .ins311-topnav a{font-size:10px;padding:4px 5px}
+  body.mm-ai-v310.ep-page .ep-article .ep-hero h1{font-size:23px}
+}
