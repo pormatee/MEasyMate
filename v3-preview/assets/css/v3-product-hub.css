@@ -1,0 +1,29 @@
+/* V3.1 Product Hub — page scoped; no global selectors affecting V2 */
+.mm-v3-catalog{background:#f5fbff;min-height:100vh;color:#14364a}
+.mm-v3-catalog a{text-decoration:none}
+.mm-v3-catalog .v31-hero{padding:22px 0 12px}
+.mm-v3-catalog .v31-hero h1{font-size:clamp(25px,5vw,37px);margin:4px 0 8px;line-height:1.2;color:#083c65}
+.mm-v3-catalog .v31-hero p{font-size:14px;color:#5a7487;max-width:770px}
+.mm-v3-catalog .v31-panel{background:#fff;border:1px solid #d1e6f0;border-radius:18px;padding:17px;margin-bottom:17px}
+.mm-v3-catalog .v31-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.mm-v3-catalog .v31-tools a{display:block;border:1px solid #cfe6f4;background:#f0f9ff;color:#07598f;border-radius:13px;padding:13px;font-weight:800}
+.mm-v3-catalog .v31-tools small{display:block;color:#59788e;font-weight:500;margin-top:4px}
+.mm-v3-catalog .v31-controls{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 16px}
+.mm-v3-catalog .v31-controls input{flex:1;min-width:180px;font:inherit;font-size:16px;border-radius:12px;border:1px solid #a6cbe1;padding:10px 12px}
+.mm-v3-catalog .v31-controls button{min-height:42px;padding:9px 13px;border:1px solid #cfe3ee;border-radius:11px;font:inherit;background:#fff;color:#24546f;font-weight:800;cursor:pointer}
+.mm-v3-catalog .v31-controls button[aria-pressed=true]{background:#0879d9;color:#fff;border-color:#0879d9}
+.mm-v3-catalog .v31-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.mm-v3-catalog .v31-card{display:flex;flex-direction:column;border:1px solid #d7e8f1;border-radius:16px;padding:16px;background:#fff;min-width:0}
+.mm-v3-catalog .v31-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.mm-v3-catalog .v31-top img{width:46px;height:46px;object-fit:contain;border-radius:10px}
+.mm-v3-catalog .v31-top strong{line-height:1.35;overflow-wrap:anywhere}
+.mm-v3-catalog .v31-card p{font-size:13px;color:#55748a;margin:7px 0 10px;line-height:1.5;flex:1}
+.mm-v3-catalog .v31-status{display:inline-block;font-size:11px;font-weight:850;border-radius:100px;padding:5px 9px;background:#e9f4fa;color:#1b587c}
+.mm-v3-catalog .v31-card a{display:block;text-align:center;border-radius:11px;padding:10px 12px;background:#eaf5ff;color:#0872bd;font-weight:850;font-size:13px}
+.mm-v3-catalog .v31-card[hidden]{display:none}
+.mm-v3-catalog .v31-empty[hidden]{display:none}
+.mm-v3-catalog .v31-empty{padding:17px;color:#586f85;background:#f6fbfe;border-radius:12px}
+.mm-v3-catalog .v31-warning{color:#725521;background:#fff9ed;border:1px solid #eeddb7;border-radius:11px;padding:13px;font-size:12px;line-height:1.5}
+.mm-v3-catalog a:focus-visible,.mm-v3-catalog button:focus-visible,.mm-v3-catalog input:focus-visible{outline:3px solid #00a8d5;outline-offset:2px}
+@media(max-width:860px){.mm-v3-catalog .v31-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:580px){.mm-v3-catalog .v31-grid,.mm-v3-catalog .v31-tools{grid-template-columns:1fr}.mm-v3-catalog .v31-panel{padding:13px}.mm-v3-catalog .v31-controls input{flex-basis:100%}}

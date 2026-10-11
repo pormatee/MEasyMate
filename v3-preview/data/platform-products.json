@@ -1,0 +1,308 @@
+{
+  "schema": "measymate_platform_product_registry_v1",
+  "base_commit": "e2408da09069e94bfe807fcc31a4af274f01cbd3",
+  "policy": {
+    "status_values": [
+      "beta",
+      "developing",
+      "concept-preview",
+      "future-direction"
+    ],
+    "status_is_not_availability": true,
+    "concept_disclaimer_required": true,
+    "direct_product_access_requires_release_gate": true,
+    "analytics_default": {
+      "mode": "LOCAL",
+      "central_transport": "OFF",
+      "event_allowlist": "REQUIRED",
+      "private_content": "FORBIDDEN",
+      "failure_mode": "NON_BLOCKING"
+    },
+    "commercial_status_values": [
+      "launch-promotion",
+      "pilot",
+      "not-for-sale-yet"
+    ],
+    "commercial_status_is_separate_from_maturity": true,
+    "customer_web_rule": "Show user benefit, access, key features, and privacy/local-first. Keep engineering/research/governance details internal."
+  },
+  "products": [
+    {
+      "id": "money",
+      "file": "money.html",
+      "name": "MEasyMate Money",
+      "short": "Money",
+      "pillar": "Growth",
+      "status": "beta",
+      "status_th": "ทดลองใช้ / Beta",
+      "type": "Personal Financial Life Planner",
+      "version": "F2.1.12",
+      "icon": "฿",
+      "summary": "วางแผนเงินแบบชีวิตจริง ตั้งแต่เงินเข้า ภาระประจำ เงินฉุกเฉิน เป้าหมายอนาคต จนถึง Weekly Budget",
+      "availability": "release-gated",
+      "commercial_status": "pilot",
+      "commercial_label": "Pilot / Limited Access",
+      "public_maturity_visible": true,
+      "direct_purchase_enabled": false,
+      "icon_asset": "assets/project-icons/money.webp",
+      "public_presentation": {
+        "status": "ทดลองใช้ฟรี",
+        "type": "เครื่องมือวางแผนการเงินส่วนบุคคล",
+        "summary": "วางแผนเงินแบบชีวิตจริง ตั้งแต่เงินเข้า รายจ่ายประจำ เงินฉุกเฉิน เป้าหมาย และงบใช้รายสัปดาห์",
+        "features": [
+          "วางแผนเงินทั้งเดือน",
+          "Weekly Budget",
+          "เป้าหมายการเงิน",
+          "Backup / Restore"
+        ],
+        "privacy": "ข้อมูลการเงินหลักอยู่ในอุปกรณ์ของคุณเป็นหลัก และไม่ส่งข้อมูลส่วนตัวขึ้นระบบส่วนกลางโดยอัตโนมัติ"
+      }
+    },
+    {
+      "id": "contact-shift-pro",
+      "file": "contact-shift-pro.html",
+      "name": "Contact Shift Pro",
+      "short": "Contact Shift",
+      "pillar": "Work",
+      "status": "beta",
+      "status_th": "ทดลองใช้ / Beta",
+      "type": "Shift Handover Tool",
+      "version": "V10.4 RC",
+      "icon": "CS",
+      "summary": "สมุดส่งต่องานระหว่างกะแบบดิจิทัล รองรับ QR, History และแนวทาง Team Trial",
+      "availability": "release-gated",
+      "commercial_status": "launch-promotion",
+      "commercial_label": "โปรโมชั่นเปิดตัว",
+      "launch_window": "2026-09",
+      "public_maturity_visible": false,
+      "direct_purchase_enabled": false,
+      "icon_asset": "assets/project-icons/contact-shift-pro.webp",
+      "public_presentation": {
+        "status": "โปรโมชั่นเปิดตัว",
+        "type": "เครื่องมือส่งต่องานระหว่างกะ",
+        "summary": "ส่งต่องานระหว่างกะให้เป็นระบบขึ้นด้วย QR, History และข้อมูลติดตามงานบนมือถือ",
+        "features": [
+          "ส่งต่องาน",
+          "QR Send / Receive",
+          "History",
+          "ใช้งานแบบ Local-first"
+        ],
+        "privacy": "ข้อมูลส่งต่องานอยู่ในอุปกรณ์เป็นหลัก และไม่ส่งเนื้อหางานกลับ MEasyMate โดยอัตโนมัติ"
+      }
+    },
+    {
+      "id": "promo-intelligence",
+      "file": "promo-intelligence.html",
+      "name": "Promotion Intelligence",
+      "short": "Promo Intelligence",
+      "pillar": "Growth",
+      "status": "beta",
+      "status_th": "ทดลองใช้ / Beta",
+      "type": "Evidence Intelligence Pilot",
+      "version": "Promo Finder V1.9",
+      "icon": "PR",
+      "summary": "ค้นหาและตรวจสอบโปรโมชั่นโดยผูกกับหลักฐาน ความสดใหม่ และขอบเขตพื้นที่อย่าง fail-closed",
+      "availability": "pilot",
+      "commercial_status": "pilot",
+      "commercial_label": "Pilot / Limited Access",
+      "public_maturity_visible": true,
+      "direct_purchase_enabled": false,
+      "icon_asset": "assets/project-icons/promotion-intelligence.webp",
+      "public_presentation": {
+        "status": "ทดลองใช้",
+        "type": "เครื่องมือช่วยค้นหาและตรวจสอบโปรโมชั่น",
+        "summary": "ช่วยค้นหาโปรโมชั่น ตรวจสอบแหล่งข้อมูล และดูว่าข้อมูลเกี่ยวข้องกับพื้นที่หรือสาขาใด",
+        "features": [
+          "ค้นหาโปรโมชั่น",
+          "ตรวจสอบแหล่งข้อมูล",
+          "เช็กพื้นที่ใช้งาน"
+        ],
+        "privacy": "ใช้ Network เมื่อจำเป็นต่อการค้นหาข้อมูลโปรโมชั่นจากแหล่งภายนอก และไม่ต้องใช้ข้อมูลส่วนตัวเพื่อค้นหาทั่วไป"
+      }
+    },
+    {
+      "id": "report-pro",
+      "file": "report-pro.html",
+      "name": "Report Pro",
+      "short": "Report Pro",
+      "pillar": "Work",
+      "status": "developing",
+      "status_th": "กำลังพัฒนา",
+      "type": "Mobile Reporting Tool",
+      "version": "Current Source",
+      "icon": "RP",
+      "summary": "รายงาน 5W2H พร้อมภาพ เสียง PDF และการแชร์ โดยเน้นการใช้งานจากมือถือ",
+      "availability": "not-public",
+      "commercial_status": "launch-promotion",
+      "commercial_label": "โปรโมชั่นเปิดตัว",
+      "launch_window": "2026-09",
+      "public_maturity_visible": false,
+      "direct_purchase_enabled": false,
+      "icon_asset": "assets/project-icons/report-pro.webp",
+      "public_presentation": {
+        "status": "โปรโมชั่นเปิดตัว",
+        "type": "เครื่องมือทำรายงานหน้างานบนมือถือ",
+        "summary": "ทำรายงาน 5W2H พร้อมรูปภาพ เสียง PDF และการแชร์จากมือถือ",
+        "features": [
+          "5W2H",
+          "รูปภาพ / เสียง",
+          "PDF / Share",
+          "History"
+        ],
+        "privacy": "รายงาน รูปภาพ และข้อมูลหน้างานอยู่ในอุปกรณ์เป็นหลัก และไม่ส่งเนื้อหารายงานกลับ MEasyMate โดยอัตโนมัติ"
+      }
+    },
+    {
+      "id": "locallife",
+      "file": "locallife.html",
+      "name": "LocalLife / PrachinLife",
+      "short": "LocalLife",
+      "pillar": "Life",
+      "status": "developing",
+      "status_th": "กำลังพัฒนา",
+      "type": "Local Everyday Assistant Platform",
+      "version": "PrachinLife Reference",
+      "icon": "LO",
+      "summary": "Platform ผู้ช่วยเรื่องใกล้ตัว โดยใช้ PrachinLife เป็น Regional Reference Model",
+      "availability": "not-public",
+      "commercial_status": "not-for-sale-yet",
+      "commercial_label": "ยังไม่เปิดขาย",
+      "public_maturity_visible": true,
+      "direct_purchase_enabled": false,
+      "icon_asset": "assets/project-icons/locallife.webp",
+      "public_presentation": {
+        "status": "กำลังพัฒนา",
+        "type": "ผู้ช่วยเรื่องใกล้ตัวในชีวิตประจำวัน",
+        "summary": "ช่วยค้นหาเรื่องใกล้ตัว ข้อมูลพื้นที่ และบริการที่เกี่ยวข้องกับชีวิตประจำวัน",
+        "features": [
+          "ค้นหาเรื่องใกล้ตัว",
+          "ข้อมูลพื้นที่",
+          "บริการใกล้ตัว"
+        ],
+        "privacy": "ยึดแนวทางใช้ข้อมูลเท่าที่จำเป็น และใช้ Network เฉพาะเมื่อต้องดึงข้อมูลภายนอก"
+      }
+    },
+    {
+      "id": "aisure",
+      "file": "aisure.html",
+      "name": "AiSure",
+      "short": "AiSure",
+      "pillar": "AI",
+      "status": "developing",
+      "status_th": "กำลังพัฒนา",
+      "type": "Insurance Intelligence / Advisor Brain",
+      "version": "Framework V1",
+      "icon": "AI",
+      "summary": "Insurance Intelligence ที่แยก deterministic authority ออกจากการอธิบายของ AI",
+      "availability": "not-public",
+      "commercial_status": "not-for-sale-yet",
+      "commercial_label": "ยังไม่เปิดขาย",
+      "public_maturity_visible": true,
+      "direct_purchase_enabled": false,
+      "icon_asset": "assets/project-icons/aisure.webp",
+      "public_presentation": {
+        "status": "กำลังพัฒนา",
+        "type": "ผู้ช่วยทำความเข้าใจความคุ้มครอง",
+        "summary": "ช่วยทำความเข้าใจภาพรวมความคุ้มครองและมองจุดที่ควรตรวจสอบเพิ่มเติมให้ง่ายขึ้น",
+        "features": [
+          "ภาพรวมความคุ้มครอง",
+          "มองช่องว่างที่ควรตรวจสอบ",
+          "อธิบายให้ง่ายขึ้น"
+        ],
+        "privacy": "ออกแบบโดยยึด Local-first และใช้ Network เท่าที่จำเป็นสำหรับฟังก์ชันที่ต้องใช้ข้อมูลภายนอก"
+      }
+    },
+    {
+      "id": "factory-daily",
+      "file": "factory-daily.html",
+      "name": "MEasyMate Factory Daily",
+      "short": "Factory Daily",
+      "pillar": "Work",
+      "status": "concept-preview",
+      "status_th": "Concept Preview",
+      "type": "Factory Work Tool",
+      "version": "Source Re-verify",
+      "icon": "FA",
+      "summary": "แนวคิดเครื่องมือช่วยงานประจำวันในโรงงาน เช่น Daily Absence และ Report 5W2H บนมือถือ",
+      "availability": "source-reverify",
+      "commercial_status": "not-for-sale-yet",
+      "commercial_label": "ยังไม่เปิดขาย",
+      "public_maturity_visible": true,
+      "direct_purchase_enabled": false,
+      "icon_asset": "assets/project-icons/factory-daily.webp",
+      "public_presentation": {
+        "status": "ใช้ฟรี",
+        "type": "เครื่องมือบันทึกงานประจำวันในโรงงาน",
+        "summary": "ช่วยบันทึกงานประจำวันในโรงงานบนมือถือ เช่น Daily Absent และรายงาน 5W2H",
+        "features": [
+          "Daily Absent",
+          "5W2H Report",
+          "Group / Cell",
+          "ใช้งานบนมือถือ"
+        ],
+        "privacy": "แนวทางหลักคือ Local-first ข้อมูลอยู่ในอุปกรณ์เป็นหลัก และใช้ Network ให้น้อยที่สุด"
+      }
+    },
+    {
+      "id": "caption-studio",
+      "file": "caption-studio.html",
+      "name": "MEasyMate Caption Studio",
+      "short": "Caption Studio",
+      "pillar": "Growth",
+      "status": "concept-preview",
+      "status_th": "Concept Preview",
+      "type": "Content / Social Media Tool",
+      "version": "V1.0A Evidence",
+      "icon": "CC",
+      "summary": "แนวคิดเครื่องมือช่วยจัดข้อความ/แคปชันสำหรับงานคอนเทนต์และ Social Media",
+      "availability": "source-reverify",
+      "commercial_status": "launch-promotion",
+      "commercial_label": "โปรโมชั่นเปิดตัว",
+      "launch_window": "2026-09",
+      "public_maturity_visible": false,
+      "direct_purchase_enabled": false,
+      "icon_asset": "assets/project-icons/caption-studio.webp",
+      "public_presentation": {
+        "status": "โปรโมชั่นเปิดตัว",
+        "type": "เครื่องมือช่วยทำแคปชันและข้อความ",
+        "summary": "ช่วยคิด จัดรูปแบบ และเตรียมแคปชันสำหรับโพสต์และ Social Media บนมือถือ",
+        "features": [
+          "ช่วยคิดแคปชัน",
+          "จัดรูปแบบข้อความ",
+          "Copy / Share",
+          "ใช้งานบนมือถือ"
+        ],
+        "privacy": "ออกแบบให้ทำงานแบบ Local-first เท่าที่เหมาะสม และใช้ Network เฉพาะส่วนที่จำเป็น"
+      }
+    },
+    {
+      "id": "easy-life",
+      "file": "easy-life.html",
+      "name": "Easy Life",
+      "short": "Easy Life",
+      "pillar": "Life",
+      "status": "concept-preview",
+      "status_th": "Concept Preview",
+      "type": "Person-centric Life Platform",
+      "version": "Concept",
+      "icon": "EL",
+      "summary": "Platform ชีวิตแบบ person-centric แบ่งตาม lifestyle/persona โดยเริ่มจาก Working Life",
+      "availability": "not-public",
+      "commercial_status": "not-for-sale-yet",
+      "commercial_label": "ยังไม่เปิดขาย",
+      "public_maturity_visible": true,
+      "direct_purchase_enabled": false,
+      "public_presentation": {
+        "status": "กำลังพัฒนา",
+        "type": "แพลตฟอร์มเครื่องมือสำหรับชีวิตประจำวัน",
+        "summary": "รวมเครื่องมือที่ช่วยชีวิตประจำวันตามรูปแบบของผู้ใช้ โดยเริ่มจาก Working Life",
+        "features": [
+          "Working Life",
+          "เครื่องมือชีวิตประจำวัน",
+          "ออกแบบตามผู้ใช้"
+        ],
+        "privacy": "Local-first เป็นแนวทางหลัก และแต่ละเครื่องมือจะใช้ Network เท่าที่จำเป็น"
+      }
+    }
+  ]
+}

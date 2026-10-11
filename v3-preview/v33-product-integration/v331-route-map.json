@@ -1,0 +1,21 @@
+{
+  "schema_version": "3.3.1-local",
+  "intelligence_route": null,
+  "intelligence_route_verified": false,
+  "intelligence_manual_field_check": "UNVERIFIED",
+  "v32_js_present": true,
+  "tools": [
+    {
+      "name": "Deadline Checker",
+      "href": "/tools/deadline-checker.html",
+      "available": true
+    },
+    {
+      "name": "Safe Payment Checklist",
+      "href": "/tools/safe-payment-checklist.html",
+      "available": true
+    }
+  ],
+  "product_links_android": "PASS_USER_CONFIRMED",
+  "public_release_approved": false
+}

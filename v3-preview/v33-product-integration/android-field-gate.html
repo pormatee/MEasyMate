@@ -1,0 +1,41 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><title>V3.2 Android Field Gate • MEasyMate</title>
+<style>
+:root{font-family:system-ui,-apple-system,'Noto Sans Thai',sans-serif;color:#16344b;background:#f3f7fb}*{box-sizing:border-box}body{margin:0}main{max-width:770px;margin:auto;padding:20px 15px 50px}h1{font-size:24px}p{line-height:1.6}.warn{padding:13px;border:1px solid #ecce83;background:#fff8e7;border-radius:12px}.line{display:flex;gap:13px;align-items:flex-start;padding:15px 13px;margin:9px 0;border-radius:12px;background:white;border:1px solid #d5e3ed;line-height:1.5;cursor:pointer}.line input{width:23px;height:23px;flex:0 0 23px;accent-color:#0879d9;margin:0}.state{padding:15px;border-radius:12px;background:#e9f0f6;font-weight:bold;margin:16px 0}.btn{border:0;padding:12px 16px;border-radius:10px;background:#0879d9;color:white;font-weight:700;font-size:15px;min-height:46px}.btn.secondary{background:#4b6275}.actions{display:flex;gap:10px;flex-wrap:wrap}a{color:#065f99}label[for=notes]{display:block;margin:16px 0 7px}textarea{width:100%;padding:12px;border:1px solid #b7c7d5;border-radius:9px;font:inherit;min-height:80px}
+</style></head><body><main>
+<a href="preview.html">← กลับ Product Hub QA</a><h1>Android Field Gate • V3.2 → V3.3</h1>
+<p class="warn">ทำรายการด้วยตนเองใน Android Chrome บนเว็บไซต์ V3.2 ในเครื่อง ตรวจจริงเท่านั้น เครื่องหมายถูกหมายถึงทดสอบแล้ว PASS ไม่ใช่การคาดเดา หากยังไม่ได้ทดสอบให้เว้นว่าง</p>
+<div id="checks"></div><label for="notes">หมายเหตุ / รุ่นเครื่อง / URL ที่ทดสอบ</label><textarea id="notes" placeholder="เช่น Chrome บน Android, ปัญหาที่พบ, path หน้า Intelligence Hub"></textarea>
+<div class="state" id="state" aria-live="polite">ANDROID_FIELD_GATE=UNVERIFIED</div>
+<div class="actions"><button class="btn" id="export">ดาวน์โหลดผลทดสอบ</button><button class="btn secondary" id="clear">ล้างผลตรวจ</button></div>
+<p>ไฟล์ผลทดสอบจะอยู่ใน Downloads ของ Android จากนั้นส่งไฟล์กลับมาในแชทเพื่อใช้เป็นหลักฐาน Gate ก่อนขั้นตอน Merge</p>
+</main><script>
+'use strict';
+const checks=[
+'Homepage V3.2 แสดง Banner/โลโก้ MEasyMate จริง และโครง V2 เดิมยังอยู่',
+'หน้าแรกและเมนูนำทางใช้งานได้บน Android Chrome',
+'Product Hub V3.2 เปิดได้ ค้น/กรอง/เลื่อนบนมือถือไม่ล้นจอ',
+'Free Tool: Deadline Checker เปิดและคำนวณ/ตรวจฟังก์ชันจริงได้',
+'Free Tool: Safe Payment Checklist เปิดและตรวจฟังก์ชันจริงได้',
+'Intelligence Hub V3.2 แสดงข้อมูล/ลิงก์ตามที่ออกแบบและกดได้จริง',
+'ย้อนกลับ เปลี่ยนหน้า เลื่อนหน้า และหมุนจอ (ถ้าทำได้) ไม่มีปัญหาสำคัญ',
+'V3.3 QA Preview แสดงครบ 8 Product และไม่มีปุ่มซื้อหรือคำอ้างว่าอนุมัติขาย',
+'ลิงก์ QA ของ Product อย่างน้อย 1 ตัวเปิดได้ใน Chrome (ไม่ใช่การรับรองอีก 7 ตัว)'
+];
+const key='MEASYMATE_V33_FIELD_GATE_20261010',target=document.getElementById('checks'),notes=document.getElementById('notes');
+let saved={checked:[],notes:''};try{saved=JSON.parse(localStorage.getItem(key))||saved}catch(e){}
+checks.forEach((name,i)=>{const line=document.createElement('label');line.className='line';const cb=document.createElement('input');cb.type='checkbox';cb.dataset.index=i;cb.checked=!!saved.checked?.[i];const span=document.createElement('span');span.textContent=(i+1)+'. '+name;line.append(cb,span);target.appendChild(line);cb.addEventListener('change',save)});
+notes.value=saved.notes||'';notes.addEventListener('input',save);
+function values(){return [...target.querySelectorAll('input')].map(i=>i.checked)}
+function save(){try{localStorage.setItem(key,JSON.stringify({checked:values(),notes:notes.value}))}catch(e){}update()}
+function update(){const n=values().filter(Boolean).length;document.getElementById('state').textContent=`ANDROID_FIELD_GATE=${n===checks.length?'PASS_MANUAL':'UNVERIFIED'} (${n}/${checks.length})`}
+function report(){const answers=values(),passed=answers.every(Boolean),lines=[
+'MEASYMATE V3.3 ANDROID FIELD REPORT',`created_at=${new Date().toISOString()}`,'browser='+navigator.userAgent,
+`ANDROID_FIELD_GATE=${passed?'PASS_MANUAL':'UNVERIFIED'}`,
+`CHECKS=${answers.filter(Boolean).length}/${checks.length}`,
+...checks.map((v,i)=>`${i+1}. ${answers[i]?'PASS':'UNVERIFIED'} - ${v}`),
+'NOTES='+notes.value.replace(/\r/g,' '),
+'NOTE=Manual field evidence only; production release NOT approved; requires review'
+];return lines.join('\n')+'\n'}
+document.getElementById('export').addEventListener('click',()=>{const blob=new Blob([report()],{type:'text/plain;charset=utf-8'});const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='MEASYMATE_V33_ANDROID_FIELD_REPORT.txt';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000)});
+document.getElementById('clear').addEventListener('click',()=>{if(!confirm('ล้างผลการตรวจในหน้านี้?'))return;target.querySelectorAll('input').forEach(c=>c.checked=false);notes.value='';save()});update();
+</script></body></html>

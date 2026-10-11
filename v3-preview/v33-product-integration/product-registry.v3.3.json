@@ -1,0 +1,26 @@
+{
+  "schema_version": "3.3.0-qa",
+  "baseline_date": "2026-10-10",
+  "website_repo": "pormatee/MEasyMate",
+  "product_repo": "pormatee/MEasyMate-Products",
+  "website_main_baseline": "9400ac08220c8e578f326525fcbd4bb9738d98ca",
+  "product_main_baseline": "e2db95d2e6d592b2176fac7d25771119513b417c",
+  "policy": {
+    "audience": "INTERNAL_QA_ONLY",
+    "public_listing_enabled": false,
+    "public_launch_requires": ["source_available=PASS", "http_reachable=PASS", "function_verified=PASS", "release_approved=true", "pre_release_audit=PASS"],
+    "no_auto_push_or_deploy": true,
+    "no_automatic_http_retest": true
+  },
+  "products": [
+    {"id":"caption-studio", "name":"Caption Studio", "category":"Growth", "url":"https://app.measymate.com/caption-studio/", "source_available":"UNVERIFIED", "http_reachable":"PASS", "function_verified":"UNVERIFIED", "release_approved":false, "pre_release_audit":"UNVERIFIED", "public_cta_enabled":false},
+    {"id":"contact-shift", "name":"Contact Shift", "category":"Work", "url":"https://app.measymate.com/contact-shift/", "source_available":"UNVERIFIED", "http_reachable":"PASS", "function_verified":"UNVERIFIED", "release_approved":false, "pre_release_audit":"UNVERIFIED", "public_cta_enabled":false},
+    {"id":"hanasu", "name":"Hanasu", "category":"Growth", "url":"https://app.measymate.com/hanasu/", "source_available":"UNVERIFIED", "http_reachable":"PASS", "function_verified":"UNVERIFIED", "release_approved":false, "pre_release_audit":"UNVERIFIED", "public_cta_enabled":false},
+    {"id":"horajarn", "name":"HORAJARN", "category":"Life", "url":"https://app.measymate.com/horajarn/", "source_available":"UNVERIFIED", "http_reachable":"PASS", "function_verified":"UNVERIFIED", "release_approved":false, "pre_release_audit":"UNVERIFIED", "public_cta_enabled":false},
+    {"id":"money", "name":"MEasyMate Money", "category":"Growth", "url":"https://app.measymate.com/money/", "source_available":"UNVERIFIED", "http_reachable":"PASS", "function_verified":"UNVERIFIED", "release_approved":false, "pre_release_audit":"UNVERIFIED", "public_cta_enabled":false},
+    {"id":"qingyun", "name":"QingYun", "category":"Growth", "url":"https://app.measymate.com/qingyun/", "source_available":"UNVERIFIED", "http_reachable":"PASS", "function_verified":"UNVERIFIED", "release_approved":false, "pre_release_audit":"UNVERIFIED", "public_cta_enabled":false},
+    {"id":"report-pro", "name":"Report Pro", "category":"Work", "url":"https://app.measymate.com/report-pro/", "source_available":"UNVERIFIED", "http_reachable":"PASS", "function_verified":"UNVERIFIED", "release_approved":false, "pre_release_audit":"UNVERIFIED", "public_cta_enabled":false},
+    {"id":"talknow", "name":"TalkNow", "category":"Growth", "url":"https://app.measymate.com/talknow/", "source_available":"UNVERIFIED", "http_reachable":"PASS", "function_verified":"UNVERIFIED", "release_approved":false, "pre_release_audit":"UNVERIFIED", "public_cta_enabled":false}
+  ],
+  "excluded_from_public_integration": ["factory-daily", "sale-center"]
+}

@@ -1,0 +1,29 @@
+MEASYMATE V3.3.2 ANDROID INTEGRATION LOCAL REPORT
+V32_SOURCE=/data/data/com.termux/files/home/MEasyMate-V32-FIELD-ZSDQJC/site
+STAGE=/data/data/com.termux/files/home/MEasyMate-V331-STAGE-Sm20yW
+V2_SOURCE_READ_ONLY=PASS
+FREE_TOOLS_FOUND=2/2
+V32_JS_AND_NEEDS_DATA=FOUND
+V331_REGISTRY_SAFETY=PASS
+INTELLIGENCE_ROUTE=UNVERIFIED_USE_HOMEPAGE_NAV
+INTELLIGENCE_FUNCTION_GATE=UNVERIFIED
+ANDROID_FIELD_GATE=UNVERIFIED
+PRODUCT_FUNCTION_GATE=UNVERIFIED
+RELEASE_APPROVAL=NO
+PRE_GIT_AUDIT=NOT_RUN PRE_RELEASE_AUDIT=NOT_RUN
+NO_GIT_ADD=YES NO_COMMIT=YES NO_PUSH=YES NO_DEPLOY=YES
+HTTP_200=/
+HTTP_200=/assets/js/v3-hub.js
+HTTP_200=/assets/js/v32-needs.js
+HTTP_200=/data/v32-needs.json
+HTTP_200=/tools/deadline-checker.html
+HTTP_200=/tools/safe-payment-checklist.html
+HTTP_200=/v33-product-integration/v331-hub.html
+HTTP_200=/v33-product-integration/product-registry.v3.3.json
+HTTP_200=/v33-product-integration/v331-route-map.json
+HTTP_200=/v33-product-integration/android-v332-field.html
+V332_LOCAL_STAGE_GATE=PASS
+V332_READY_FOR_MERGE=NO
+LOCAL_PORT=8892
+PREVIEW_URL=http://127.0.0.1:8892/v33-product-integration/v331-hub.html
+FIELD_URL=http://127.0.0.1:8892/v33-product-integration/android-v332-field.html

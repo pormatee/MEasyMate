@@ -1,0 +1,75 @@
+{
+  "schema": "measymate_v3_publication_approvals_1",
+  "description": "Explicit approval for listing existing PUBLIC detail pages only. Not permission to claim availability or to link to a purchase/launch endpoint.",
+  "approved_product_ids": [
+    "money",
+    "contact-shift-pro",
+    "promo-intelligence",
+    "report-pro",
+    "locallife",
+    "aisure",
+    "factory-daily",
+    "caption-studio",
+    "easy-life"
+  ],
+  "allow_direct_app_links": false,
+  "guardrails": {
+    "new_products_require_manual_approval": true,
+    "release_claims_require_separate_gate": true,
+    "public_details_only": true
+  },
+  "product_keywords": {
+    "money": [
+      "การเงิน",
+      "เงินออม",
+      "หนี้",
+      "รายรับ",
+      "รายจ่าย",
+      "วางแผนเงิน"
+    ],
+    "contact-shift-pro": [
+      "ส่งต่องาน",
+      "เปลี่ยนกะ",
+      "โรงงาน",
+      "กะทำงาน",
+      "handover"
+    ],
+    "promo-intelligence": [
+      "โปรโมชั่น",
+      "โปรโมชัน",
+      "ส่วนลด",
+      "ดีล"
+    ],
+    "report-pro": [
+      "รายงาน",
+      "5w2h",
+      "บันทึกงาน"
+    ],
+    "locallife": [
+      "ชีวิตประจำวัน",
+      "ใกล้บ้าน",
+      "พื้นที่"
+    ],
+    "aisure": [
+      "ประกัน",
+      "ความคุ้มครอง",
+      "ประกันภัย"
+    ],
+    "factory-daily": [
+      "โรงงาน",
+      "พนักงาน",
+      "รายงานประจำวัน"
+    ],
+    "caption-studio": [
+      "แคปชั่น",
+      "แคปชัน",
+      "โพสต์ขาย",
+      "คอนเทนต์",
+      "social"
+    ],
+    "easy-life": [
+      "ชีวิตประจำวัน",
+      "ผู้ช่วยชีวิต"
+    ]
+  }
+}

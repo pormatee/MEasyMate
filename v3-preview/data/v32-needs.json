@@ -1,0 +1,12 @@
+{
+  "schema": "measymate_v32_curated_needs_1",
+  "scope": "public_discovery_only",
+  "categories": [
+    {"id":"money","title":"การเงิน","icon":"💰","description":"จัดการรายรับ รายจ่าย และวางแผนเงิน","keywords":["เงิน","ออม","หนี้","รายรับ","รายจ่าย","งบ"],"product_ids":["money"]},
+    {"id":"safety","title":"ความปลอดภัย","icon":"🛡️","description":"ทบทวนความเสี่ยงก่อนทำธุรกรรม","keywords":["โอนเงิน","หลอก","โกง","ความปลอดภัย","มิจฉาชีพ"],"product_ids":[]},
+    {"id":"life","title":"ชีวิตประจำวัน","icon":"🏡","description":"วันครบกำหนด เอกสาร และเรื่องใกล้ตัว","keywords":["ประกันรถ","รถ","ภาษีรถ","เอกสาร","วันครบกำหนด","บ้าน"],"product_ids":["locallife","aisure","easy-life"]},
+    {"id":"work","title":"การทำงาน","icon":"🏭","description":"รายงาน งานกะ และการทำงานให้เป็นระบบ","keywords":["งาน","โรงงาน","กะ","รายงาน","พนักงาน","5w2h"],"product_ids":["contact-shift-pro","report-pro","factory-daily"]},
+    {"id":"learning","title":"การเรียนรู้","icon":"📚","description":"คู่มือและแนวทางพัฒนาทักษะ","keywords":["เรียน","ภาษา","สอน","ความรู้","AI","คู่มือ"],"product_ids":[]},
+    {"id":"content","title":"ขายของและคอนเทนต์","icon":"📱","description":"เตรียมแคปชั่นและค้นหาไอเดียการขาย","keywords":["แคปชั่น","แคปชัน","โพสต์","ขาย","คอนเทนต์","โปรโมชั่น"],"product_ids":["caption-studio","promo-intelligence"]}
+  ]
+}
